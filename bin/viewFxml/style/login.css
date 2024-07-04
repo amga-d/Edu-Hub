@@ -1,0 +1,208 @@
+* {
+  -fx-primary: #0d1925;
+  -fx-secondary: #049479;
+  -fx-green-gradient :linear-gradient(91deg, #0D1925 -3.82%, #059379 49.72%)
+
+  /* -fx-focus-color: -fx-secondary-color; */
+}
+
+.mainscene {
+  -fx-background-color: -fx-primary;
+}
+.slogan {
+  -fx-text-fill: white;
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+}
+.sign-in-button {
+  -fx-background-color: -fx-secondary;
+  -fx-background-radius: 6px;
+  -fx-text-fill: white;
+  -fx-font-size: 14;
+  -fx-font-weight: bold;
+}
+.box-label {
+    -fx-font-family:Poppins;
+    -fx-font-size: 16;
+}
+.hello{
+    -fx-font-size: 50px;
+    -fx-font-family: Poppins;
+}
+.welcome{
+    -fx-font-size: 60px;
+    -fx-font-family: Poppins;
+    -fx-font-weight: bold;
+}
+.text-box{
+    -fx-background-color: #ffffff; /* Background color of the button */
+    -fx-background-radius: 5; /* Rounded corners for the background */
+    -fx-border-color: linear-gradient(from 0% 0% to 100% 100%, #0D1925 -3.82%, #059379 49.72%); /* Gradient border */   
+    -fx-border-radius: 5; /* Rounded corners for the border */
+    -fx-border-width: 1; /* Border width */
+    -fx-border-style: solid; /* Border style */
+    
+    /* -fx-padding: 10; Padding inside the button */
+}
+.opacity{
+    -fx-opacity: 0.5;
+}
+.opacity:focused{
+    -fx-opacity: 1;
+}
+/* .root {
+    -fx-background-color: transparent;
+} */
+
+#clippingPane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+.sign-in-welcome{
+  -fx-text-fill: -fx-primary;
+  -fx-font-size: 25px;
+  -fx-font-family: Poppins;
+}
+
+
+.date-picker .arrow-button {
+  -fx-background-color: -fx-secondary;
+  -fx-background-radius: 2;
+
+
+}
+/* Styling for items in the dropdown list */
+.combo-box .list-cell {
+  -fx-background-color: transparent; /* Background color of items */
+  -fx-text-fill: black; /* Text color of items */
+}
+
+/* Styling for selected item in the dropdown list */
+.combo-box .list-view .list-cell:selected {
+  -fx-background-color: -fx-secondary; /* Background color of selected item */
+  -fx-text-fill: white; /* Text color of selected item */
+}
+
+/* Hover effect for items in the dropdown list */
+.combo-box .list-view .list-cell:hover {
+  -fx-background-color: #04947ac3; /* Background color on hover */
+}
+
+.date-picker .arrow-button .arrow {
+  -fx-background-color: white;
+}
+.date-picker .cell {
+  -fx-background-color: white;
+}
+.date-picker .cell:hover {
+  -fx-background-color: -fx-secondary;
+  -fx-opacity: 0.7;
+}
+
+.date-picker .selected {
+  -fx-background-color: -fx-secondary;
+  -fx-text-fill: white;
+}
+.date-picker .selected:focused {
+  -fx-background-color: -fx-secondary;
+  -fx-text-fill: white;
+}
+.date-picker-popup  {
+  -fx-border-color: transparent;
+}
+.date-picker-popup .month-year-pane {
+  -fx-background-color: -fx-secondary;
+}
+.date-picker-popup .month-year-pane .label {
+  -fx-text-fill: white;
+}
+.date-picker-popup .week-number-cell {
+  -fx-text-fill: -fx-secondary;
+}
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+  -fx-background-color: white;
+}
+.date-picker {
+  -fx-border-color: linear-gradient(from 0% 0% to 100% 100%, #0D1925 -3.82%, #059379 49.72%); /* Gradient border */   
+  -fx-border-width: 1px; /* Example border width */
+  /* -fx-opacity: 0.5; */
+  -fx-background-radius: 5;
+  -fx-border-radius: 5;
+}
+
+.objective-lable{
+  -fx-text-fill: -fx-primary;
+  -fx-font-size: 20px;
+  -fx-font-family: Poppins;
+}
+.objective-description{
+  -fx-text-fill: rgba(0, 0, 0, 0.69);
+  -fx-font-size: 15px;
+  -fx-font-family: Poppins;
+}
+
+.Skill-Development{
+  -fx-text-fill: -fx-primary;
+  -fx-border-color: linear-gradient(from 0% 0% to 100% 100%, #2C4175 -1.15%, #DE8BB6 99.63%);
+  -fx-border-width: 2;
+  -fx-border-radius: 10px;
+
+}
+.hover-pane {
+  -fx-opacity: 0.8;
+}
+
+.hover-pane:hover {
+  -fx-opacity: 0.9;
+}
+.hover-pane:focus {
+  -fx-opacity: 1;
+}
+.academic-Excellence{
+  -fx-text-fill: -fx-primary;
+  -fx-border-color: linear-gradient(from 0% 0% to 100% 0%, #0080F0 -1.15%, #00E7F0 100%);
+  -fx-border-width: 2;
+  -fx-border-radius: 10px;
+
+}
+
+.personal-growth{
+  -fx-text-fill: -fx-primary;
+  -fx-border-color: linear-gradient(from 0% 0% to 100% 0%,#2BB782 1%, #EFE767 99.14%);
+  -fx-border-width: 2;
+  -fx-border-radius: 10px;
+}
+
+.finish-button{
+  -fx-background-color: -fx-secondary;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-font-family: Poppins;
+  -fx-font-size: 14;
+}
+
+.hover-button{
+  -fx-opacity: 1;
+}
+.hover-button:hover{
+  -fx-background-color:#013a2f;
+
+}
+
+.hover-skip-button{
+  -fx-opacity: 1.0;
+  -fx-background-color: white;
+  -fx-text-fill: rgba(0, 0, 0, 0.49);
+  -fx-font-weight: bold;
+  -fx-font-family: Poppins;
+  -fx-font-size: 14;
+  /* -fx-transition: -fx-background-color 0.3s; */
+}
+
+.hover-skip-button:hover {
+  -fx-background-color: rgba(0, 0, 0, 0.15);
+  -fx-text-fill: black;
+
+}
