@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1536.0" style="-fx-background-color: F4F4F8;" stylesheets="@style/Mentor.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewFxml.MentorMenuController">
+   <left>
+      <Pane prefHeight="865.0" prefWidth="308.0" style="-fx-background-color: 059379;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" fillWidth="false" layoutY="-2.0" prefHeight="865.0" prefWidth="308.0" style="-fx-background-color: #059379; -fx-border-width: 1 1 0 0;">
+               <children>
+                  <Label text="Mentor" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="64.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Poppins Regular" size="17.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="profileImage" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets top="17.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label layoutX="134.0" layoutY="74.0" text="Name" textFill="WHITE">
+                     <font>
+                        <Font name="Poppins Bold" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="13.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Pane fx:id="editProfileButton" prefHeight="35.0" prefWidth="143.0">
+                     <children>
+                        <Label alignment="CENTER" layoutY="2.0" text="Edit  Profile" textFill="WHITE">
+                           <font>
+                              <Font name="Poppins Regular" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="105.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resources/edit_Icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <VBox prefHeight="442.0" prefWidth="319.0" spacing="13.0">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <children>
+                        <Pane fx:id="dashBoardButton" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="106.0" layoutY="16.0" styleClass="text-Label" text="Dashboard" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/carbon_dashboard.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </Pane>
+                        <Pane fx:id="chatButton" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="109.0" layoutY="16.0" styleClass="text-Label" text="Chat" />
+                              <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="51.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Chat_alt_2_light.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="settingButton" layoutX="10.0" layoutY="80.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="107.0" layoutY="16.0" styleClass="text-Label" text="Setting">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font></Label>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/settingA.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="logOut" layoutX="10.0" layoutY="301.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="104.0" layoutY="16.0" styleClass="text-Label" text="Log Out" />
+                              <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="54.0" layoutY="17.0" pickOnBounds="true" smooth="false">
+                                 <image>
+                                    <Image url="@../Resources/icons_logout.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>

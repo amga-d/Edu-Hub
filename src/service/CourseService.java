@@ -7,7 +7,11 @@ import model.User;
 public interface CourseService {
     void addCourse(Course course);
     void removeCourse(Course course);
+
     List<Course> getAllCourses();
+    List<Course> getRandomCourses(int num);
+    List<Course> getCourseByCategory(String category);
+
     Course getCourseByName(String courseName);
     void updateCourse(Course course);
 
@@ -15,4 +19,5 @@ public interface CourseService {
     void registerUser(Course course, User user);
     void unregisterUser(Course course, User user);
     double getUserProgress(Course course, User user);
+
 }

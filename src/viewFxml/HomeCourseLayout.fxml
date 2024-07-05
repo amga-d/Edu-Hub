@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fillWidth="false" prefHeight="252.0" prefWidth="227.5" styleClass="course-layout" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewFxml.CourseLayoutController">
+   <children>
+      <ImageView fx:id="courseImage" fitHeight="122.85" fitWidth="210.74" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../../../a-minimalistic-yet-eye-catching-banner-for-an-arch-2P7bi7l0RFCJo5XR5kkP2A-b9PNv6fQS9uT4Cta1bHM1A%203.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="courseName" prefHeight="22.0" prefWidth="195.0" text="Introduction to Architecture" wrapText="true" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets left="13.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="courseDesciption" alignment="TOP_LEFT" contentDisplay="TOP" prefWidth="196.0" text="Basics of architecture and its history" wrapText="true">
+         <VBox.margin>
+            <Insets left="13.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Poppins Regular" size="9.0" />
+         </font>
+      </Label>
+      <Label fx:id="tag" prefHeight="18.0" style="-fx-background-color: D7DEE2; -fx-text-fill: black; -fx-background-radius: 4;" text="Architecture" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets left="4.0" right="4.0" />
+         </padding>
+         <font>
+            <Font size="8.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="200.0" spacing="3.0">
+         <children>
+            <ImageView fitHeight="8.0" fitWidth="8.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../Resources/Star-icon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="rate" prefHeight="11.0" prefWidth="12.0" text="5.0">
+               <font>
+                  <Font size="9.0" />
+               </font>
+               <padding>
+                  <Insets top="1.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <Pane prefHeight="26.0" prefWidth="211.0">
+         <children>
+            <Pane fx:id="opencourse" layoutX="165.0" layoutY="3.0" prefHeight="20.0" prefWidth="37.0" style="-fx-background-color: #059379; -fx-background-radius: 4;">
+               <children>
+                  <ImageView fitHeight="10.0" fitWidth="13.0" layoutX="12.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/arrow-icom.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+   <padding>
+      <Insets left="8.0" top="7.0" />
+   </padding>
+</VBox>

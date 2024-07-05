@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewFxml.MentorDashBoardController">
+   <children>
+      <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="1120.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/main_logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1022.0" layoutY="61.0" text=".edu-Hub">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="1129.4000244140625" endY="7.62939453125E-6" layoutX="101.0" layoutY="120.0" startX="-100.0" stroke="#f4f4f8" />
+      <Label layoutX="47.0" layoutY="53.0" text="Dashboard">
+         <font>
+            <Font name="Poppins Regular" size="27.0" />
+         </font>
+      </Label>
+      <VBox layoutX="38.0" layoutY="131.0" prefHeight="682.0" prefWidth="468.0" spacing="35.0">
+         <children>
+            <ImageView fx:id="courseImage" fitHeight="198.0" fitWidth="340.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/UplaodImage.png" />
+               </image>
+            </ImageView>
+            <HBox prefWidth="386.0">
+               <children>
+                  <Label text="Course Name :" textFill="#059379">
+                     <font>
+                        <Font name="Poppins Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="courseNameLabel" prefHeight="30.0">
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="240.0" prefWidth="386.0">
+               <children>
+                  <Label text="Course Category : " textFill="#059379">
+                     <font>
+                        <Font name="Poppins Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="courseCategoryLabel" prefHeight="30.0">
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="552.0" prefWidth="386.0">
+               <children>
+                  <Label text="Total User Enrolled : " textFill="#059379">
+                     <font>
+                        <Font name="Poppins Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalUsersLabel" prefHeight="30.0">
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="614.0" prefWidth="386.0">
+               <children>
+                  <Label text="Course Rating  :" textFill="#059379">
+                     <font>
+                        <Font name="Poppins Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="courseRatingLabel" prefHeight="30.0">
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="676.0" prefHeight="211.0" prefWidth="468.0">
+               <children>
+                  <Label text="Course Description :" textFill="#059379">
+                     <font>
+                        <Font name="Poppins Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="courseDescriptionLabel" prefHeight="30.0">
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+      <TableView fx:id="courseTableView" layoutX="506.0" layoutY="143.0" prefHeight="691.0" prefWidth="593.0">
+         <columns>
+            <TableColumn fx:id="courseNameColumn" prefWidth="200.00006103515625" text="Course Name" />
+            <TableColumn fx:id="courseCategoryColumn" minWidth="3.99993896484375" prefWidth="204.0" text="Course Category" />
+            <TableColumn fx:id="totalUsersColumn" minWidth="3.99993896484375" prefWidth="204.0" text="Total Enrolled Users" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>

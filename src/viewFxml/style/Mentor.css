@@ -1,0 +1,15 @@
+.menu-button{  
+    -fx-background-color:  transparent;
+    -fx-background-radius: 6; 
+    
+}
+
+.text-Label{
+    -fx-text-fill: White;
+    -fx-font-size: 17px;
+    -fx-font-family: "Arial Rounded MT Bold";
+}
+
+.menu-button:hover{
+    -fx-background-color: #06816D;
+}

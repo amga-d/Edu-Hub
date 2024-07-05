@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
 public class MainController implements Initializable {
-   
+
     @FXML
     private BorderPane borderPane;
 
@@ -179,28 +179,39 @@ public class MainController implements Initializable {
         courseService = new CourseServiceImpl();
         setCalender();
 
-        
         // handleBoxClick(homeButton);
         homeButton.getChildren().get(0).getStyleClass().add("selected");
         homeImage.setVisible(true);
-        openPage("Home.fxml");
-        
+        HomeController homeController = openPage("Home.fxml").getController();
+        homeController.setCourseService(courseService);
+        homeController.intiialHomePage();
+
+        homeButton.setOnMouseClicked(e -> {
+
+            Pane clickedBox = (Pane) e.getSource();
+            handleBoxClick(clickedBox);
+            homeImage.setVisible(true);
+            homeButton.getChildren().get(0).getStyleClass().add("selected");
+
+            HomeController homeController1 = openPage("Home.fxml").getController();
+            homeController1.setCourseService(courseService);
+            homeController1.intiialHomePage();
+
+        });
+
         courseButton.setOnMouseClicked(e -> {
+
             Pane clickedBox = (Pane) e.getSource();
             handleBoxClick(clickedBox);
             coursImage.setVisible(true);
             courseButton.getChildren().get(0).getStyleClass().add("selected");
-            
+
+            CoursesContorller couresesContorller = openPage("Courses.fxml").getController();
+            couresesContorller.setCourseService(courseService);
+            couresesContorller.initialCoursePage();
+
         });
-        homeButton.setOnMouseClicked(e -> {
-            Pane clickedBox = (Pane) e.getSource();
-            handleBoxClick(clickedBox);
-            homeImage.setVisible(true);
-            openPage("Home.fxml");
-            homeButton.getChildren().get(0).getStyleClass().add("selected");
-            
-        });
-        
+
         forumButton.setOnMouseClicked(e -> {
             Pane clickedBox = (Pane) e.getSource();
             handleBoxClick(clickedBox);
@@ -278,40 +289,41 @@ public class MainController implements Initializable {
         profileImage.setVisible(false);
         forumImage.setVisible(false);
 
-
-
     }
 
     public void setAccount(Account account, AccountService accountService) {
         this.account = account;
         User user = (User) account;
-        username.setText(user.getFullName());
+        username.setText(user.getName());
         String imagePath = user.getProfilePath();
 
         courseService.setAccountService(accountService);
         if (imagePath != null) {
 
-            setImage(user.getProfilePath(), profile);
+            setProfile(imagePath);
         }
     }
 
-    private void setImage(String filePath, ImageView imageview) {
+    private void setProfile(String filePath) {
         Image image = new Image(filePath);
-        imageview.setImage(image);
-        double radius = (Math.min(imageview.getFitHeight(), imageview.getFitWidth())) / 2;
+        profile.setImage(image);
+        double radius = (Math.min(profile.getFitHeight(), profile.getFitWidth())) / 2;
         Circle clipCircle = new Circle(radius, radius, radius);
-        imageview.setClip(clipCircle);
+        profile.setClip(clipCircle);
     }
 
-    private void openPage(String fileName) {
+    private FXMLLoader openPage(String fileName) { // open page and return FXMLLOADER
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
 
         Parent root;
         try {
             root = loader.load();
+            loader.getController();
             borderPane.setCenter(root);
+            return loader; // return the loader to be to get the controller class
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 

@@ -1,17 +1,21 @@
 package model;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.scene.image.Image;
 
 public class Course {
     private String courseName;
     private String courseDescription;
     private double courseRating;
+    private String tag;
     private List<Quiz> quizzes;
     private List<Material> materials;
     private List<String> registeredUsers;
     private String courseId;
-
+    private String courseImagePath;
     static private int countId = 0;
 
     // Constructor
@@ -19,6 +23,8 @@ public class Course {
         this.courseName = courseName;
         this.courseDescription = courseDescription;
         this.courseRating = 0.0;
+        this.tag = "";
+        // this.courseImagePath =
         this.quizzes = new ArrayList<>();
         this.materials = new ArrayList<>();
         this.registeredUsers = new ArrayList<>();
@@ -26,13 +32,27 @@ public class Course {
         intialCourseId();
     }
 
-    private void intialCourseId(){
-        String idstr = courseName.substring(0, 2) + "@"+countId;
+    public Course(String courseName, String courseDescription, double courseRating, String tag,
+            String courseImagePath) {
+        this.courseName = courseName;
+        this.courseDescription = courseDescription;
+        this.courseRating = courseRating;
+        this.tag = tag;
+        this.courseImagePath = courseImagePath;
+        this.quizzes = new ArrayList<>();
+        this.materials = new ArrayList<>();
+        this.registeredUsers = new ArrayList<>();
+        countId += 1;
+        intialCourseId();
+    }
+
+    private void intialCourseId() {
+        String idstr = courseName.substring(0, 2) + "@" + countId;
         this.courseId = idstr;
     }
 
     // Getters and Setters
-    
+
     public String getCourseName() {
         return courseName;
     }
@@ -71,21 +91,22 @@ public class Course {
 
     // Methods
     public void registerUser(User user) {
-        if (!registeredUsers.contains(user)) {
-            registeredUsers.add(user.getUserId());
+        if (!registeredUsers.contains(user.getId())) {
+            registeredUsers.add(user.getId());
             user.addCourse(this); // Add the course to the user's list
         }
     }
 
     public void unregisterUser(User user) {
-        if (registeredUsers.contains(user)) {
-            registeredUsers.remove(user.getUserId());
+        if (registeredUsers.contains(user.getId())) {
+            registeredUsers.remove(user.getId());
             user.removeCourse(this); // Remove the course from the user's list
         }
     }
 
     public double countUserProgress(User user) {
-        // Implement logic to count user's progress based on completed quizzes and materials
+        // Implement logic to count user's progress based on completed quizzes and
+        // materials
         return 0.0; // Placeholder return value
     }
 
@@ -121,5 +142,34 @@ public class Course {
         Course.countId = countId;
     }
 
-    
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getCourseImagePath() {
+        return courseImagePath;
+    }
+
+    public void setCourseImagePath(String courseImagePath) {
+        this.courseImagePath = courseImagePath;
+    }
+
+    public Image getCourseImage() {
+        try {
+            return new Image(courseImagePath);
+        } catch (Exception e) {
+            System.out.println();
+            return null;
+        }
+
+    }
+
 }

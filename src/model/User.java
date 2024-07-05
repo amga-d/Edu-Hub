@@ -5,24 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User extends Account {
-    private String fullName;
     private String job;
     private boolean gender; // t: male , f:female
     private LocalDate date;
     private int age;
     private String profilePath;
-    private String userId;
     private List<String> enrolledCourses; // List of courses the user is enrolled in
 
     public User(String password, String email, String fullName, Boolean gender, LocalDate date, String job) {
         super(fullName,password, email);
-        this.fullName = fullName;
         this.gender = gender;
         this.date = date;
         this.job = job;
-        this.userId = super.getAccountId();
         this.enrolledCourses = new ArrayList<>();
-
         countAge();
     }
     
@@ -32,26 +27,16 @@ public class User extends Account {
     public User(String password, String email, String fullName, boolean gender, LocalDate date, String job,
             String profilePath) {
         super(fullName,password, email);
-        this.fullName = fullName;
         this.job = job;
         this.gender = gender;
         this.date = date;
         this.profilePath = profilePath;
-        this.userId = super.getAccountId();
         this.enrolledCourses = new ArrayList<>();
         countAge();
     }
 
     private void countAge() {
         this.age = LocalDate.now().getYear() - date.getYear();
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getJob() {
@@ -118,18 +103,13 @@ public class User extends Account {
     @Override
     public String toString() {
         return "Profile{" +
-                "fullName='" + fullName + '\'' +
+                "fullName='" +  
                 ", job='" + job + '\'' +
                 ", gender=" + gender +
                 ", date=" + date +
                 ", age=" + age +
                 ", profilePath='" + profilePath + '\'' +
                 '}';
-    }
-
-
-    public String getUserId() {
-        return userId;
     }
 
     public void setEnrolledCourses(List<String> enrolledCourses) {

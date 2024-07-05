@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import model.Account;
@@ -90,4 +91,27 @@ public class CourseServiceImpl implements CourseService {
         }
         courseModel.saveCourses(courses);
     }
+
+    @Override
+    public List<Course> getRandomCourses(int num) {
+        List<Course> shuffledList = new ArrayList<>(courses);
+        Collections.shuffle(shuffledList); 
+        if (num > courses.size()) {
+            num = courses.size();
+        }
+        return shuffledList.subList(0, num);
+    }
+
+    @Override
+    public List<Course> getCourseByCategory(String category) {
+        List<Course> categorizedCourses = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getTag().equalsIgnoreCase(category)) {
+                categorizedCourses.add(course);
+            }
+        }
+        return categorizedCourses;
+    }
+
+    
 }

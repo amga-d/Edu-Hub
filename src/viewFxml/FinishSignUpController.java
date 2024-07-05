@@ -104,6 +104,8 @@ public class FinishSignUpController implements Initializable {
             Scene scene = new Scene(mainPage);
             Stage stage = new Stage();
             stage.setFullScreen(true);
+            stage.setTitle("Edu-Squad");
+            stage.getIcons().add(getStage().getIcons().getFirst());
             // System.out.println(stage.getFullScreenExitHint());
             stage.setScene(scene);
             getStage().close();

@@ -3,20 +3,20 @@ public abstract class Account {
     private String name;
     private String password;
     private String email;
-    private String AccountId;
+    private String Id;
 
-    private static int id = 0;
+    private static int countId = 0;
 
     public Account(String name,String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
-        id++;
+        countId++;
         intialAccountId();
         
     }
     
-
+    
     // Getters and Setters
 
 
@@ -36,21 +36,13 @@ public abstract class Account {
         this.email = email;
     }
 
-    public String getAccountId() {
-        return AccountId;
+    public String getId() {
+        return Id;
     }
 
     private void intialAccountId() {
-        String idstr = name.substring(0, 2) + "@"+id;
-        this.AccountId = idstr;
-    }
-
-    public static int getId() {
-        return id;
-    }
-
-    public static void setId(int id) {
-        Account.id = id;
+        String idstr = name.substring(0, 2) + "@"+countId;
+        this.Id = idstr;
     }
 
 
@@ -64,8 +56,23 @@ public abstract class Account {
     }
 
 
-    public void setAccountId(String accountId) {
-        AccountId = accountId;
+    public void setAccountId(String Id) {
+        this.Id = Id;
+    }
+
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+
+    public static int getCountId() {
+        return countId;
+    }
+
+
+    public static void setCountId(int countId) {
+        Account.countId = countId;
     }
 
 }
