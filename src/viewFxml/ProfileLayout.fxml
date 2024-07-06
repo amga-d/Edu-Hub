@@ -228,7 +228,7 @@
                      </children>
                   </VBox>
                </children></VBox>
-            <Pane layoutX="223.0" layoutY="162.0" prefHeight="119.0" prefWidth="1473.0">
+            <Pane layoutX="223.0" layoutY="162.0" prefHeight="119.0" prefWidth="1434.0">
                <children>
                   <Label layoutY="15.0" text="{Account_Owner_Name}">
                      <font>
@@ -257,7 +257,15 @@
                            </font>
                         </Label>
                         <Label layoutX="202.0" layoutY="51.0" prefHeight="94.0" prefWidth="1045.0" text="{Course Description goes here: Basic Physics: Fundamental principles of physics, covering mechanics, thermodynamics, and waves.Classical Mechanics: Study of motion, forces, and energy in physical systems.Electromagnetism: Exploration of electric and magnetic fields and their interactions.Modern Physics: Introduction to concepts of quantum mechanics and relativity.Thermodynamics: Principles governing heat, energy, and work. }" wrapText="true" />
-                        <Pane layoutX="1265.0" layoutY="-36.0" prefHeight="170.0" prefWidth="166.0" />
+                        <Pane layoutX="1254.0" prefHeight="155.0" prefWidth="177.0">
+                           <children>
+                              <Label layoutX="38.0" layoutY="100.0" text="Add to LinkedIn" textFill="#0274b3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children></Pane>
                </children>
             </VBox>
