@@ -19,7 +19,7 @@ public class AccountServiceImpl implements AccountService {
 
     public void updateCountId() {
         if (!accountList.isEmpty()) {
-            String idstr = accountList.getLast().getId();
+            String idstr = (accountList.get(accountList.size() - 1).getId());
             int indx = idstr.indexOf("@");
             int id = Integer.parseInt(idstr.substring(indx + 1));
             Account.setCountId(id);

@@ -27,7 +27,7 @@ public class CourseServiceImpl implements CourseService {
 
     private void updateCountId() {
         if (!courses.isEmpty()) {
-            String idstr = courses.getLast().getCourseId();
+            String idstr = courses.get(courses.size() - 1).getCourseId();
             int indx = idstr.indexOf("@");
             int id = Integer.parseInt(idstr.substring(indx + 1));
             Course.setCountId(id);

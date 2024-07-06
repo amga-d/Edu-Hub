@@ -34,7 +34,7 @@ public class Main extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setTitle("edu-Hup");
+        primaryStage.setTitle("edu-Hub");
         primaryStage.getIcons().add(icon);
         primaryStage.show();
     }
