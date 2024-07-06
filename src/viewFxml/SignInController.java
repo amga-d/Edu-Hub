@@ -22,6 +22,9 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
 import model.Account;
+import model.Admin;
+import model.Instructor;
+import model.User;
 import service.AccountService;
 
 public class SignInController implements Initializable {
@@ -85,26 +88,49 @@ public class SignInController implements Initializable {
     }
 
     public void openMainPage(Account account, AccountService accountService) {
-        
-        try {
+        Parent root;
+        if (account instanceof User){
+            try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
-            Parent mainPage = loader.load();
+            root = loader.load();
             MainController mainController = loader.getController();
             mainController.setAccount(account,accountService);
-            
-            Scene scene = new Scene(mainPage);
-            Stage stage = new Stage();
-            stage.setFullScreen(true);
-            // System.out.println(stage.getFullScreenExitHint());
-            stage.setScene(scene);
-            getStage().close();
-            stage.show();
+            openStage(root);
 
         } catch (IOException ex) {
-            // TODO Auto-generated catch block
             ex.printStackTrace();
         }
+        
+        }
+        else if(account instanceof Instructor){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MentorMenu.fxml"));
+            try {
+                root = loader.load();
+                MentorMenuController controller = loader.getController();
+                controller.setAccount(account);
+                controller.InitialMenu();
+                openStage(root);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+        }
+        else{
+            System.out.println("Account is not a user or instructor");
+        }
+
+                    
     }
+
+    private void openStage(Parent root){  
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+        getStage().close();
+        stage.show();}
 
     
     private Stage getStage() {

@@ -3,6 +3,9 @@ package viewFxml;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -10,6 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -65,9 +71,16 @@ public class SignUpController implements Initializable {
     @FXML
     private VBox vBox;
 
+    @FXML
+    private Label mentorLabel;
+    @FXML
+    private CheckBox mentorCheckbox;
+
     private Boolean[] isInformationFilled;
     private Stage stage;
     private AccountService accountService;
+    private String absolutePath;
+    private Boolean isUserAccount;
 
     String[] jobOptions = { "Software Developer/Engineer",
             "Data Scientist",
@@ -99,11 +112,12 @@ public class SignUpController implements Initializable {
             "Scientist",
             "Artist",
             "Other" };
-    Image temporary = new Image(getClass().getResourceAsStream("../Resources/loading_pic.png"));
+    Image temporary = new Image(getClass().getResourceAsStream("/Resources/account_images/UploadProfile.png"));
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         isInformationFilled = new Boolean[6];
+        isUserAccount = true;
 
         for (int i = 0; i < 6; i++) {
             isInformationFilled[i] = false;
@@ -120,32 +134,70 @@ public class SignUpController implements Initializable {
         setChange(birthMenu, birthDate, 3);
         setChange(jobOption, role, 4);
         setChange(genderBox, gender, 5);
+        setChange(mentorCheckbox, mentorLabel);
 
         profilePic.setOnMouseClicked(event -> {
             changeProfile();
         });
+    }
 
+    @FXML
+    public void handleMentorCheckBox(ActionEvent e) {
+        if (mentorCheckbox.isSelected()) {
+            isUserAccount = false;
+        } else {
+            isUserAccount = true;
+        }
     }
 
     private void changeProfile() {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Image File");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         fileChooser.setInitialDirectory(new File("src/Resources"));
         File selectedFile = fileChooser.showOpenDialog(stage);
-
         if (selectedFile != null) {
-            setImage(selectedFile.toURI().toString(), profilePic);
+
+            absolutePath = selectedFile.toURI().toString();
+            setImage(absolutePath);
         }
+
     }
 
-    private void setImage(String filePath, ImageView imageview) {
-        Image image = new Image(filePath);
-        imageview.setImage(image);
-        double radius = (Math.min(imageview.getFitHeight(), imageview.getFitWidth())) / 2;
+    private void setImage(String absolutePath) {
+        Image image = new Image(absolutePath);
+        profilePic.setImage(image);
+        double radius = (Math.min(profilePic.getFitHeight(), profilePic.getFitWidth())) / 2;
         Circle clipCircle = new Circle(radius, radius, radius);
-        imageview.setClip(clipCircle);
+        profilePic.setClip(clipCircle);
+
+    }
+
+    private void setChange(CheckBox checkBox, Label label) {
+        checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                checkBox.setStyle("-fx-opacity: 1.0;");
+                label.setStyle("-fx-opacity: 1.0;");
+            } else {
+                checkBox.setStyle("-fx-opacity: 0.5;");
+                label.setStyle("-fx-opacity: 0.5;");
+            }
+        });
+
+        // Adding listener to checkbox focused property
+        checkBox.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                checkBox.setStyle("-fx-opacity: 1.0;");
+                label.setStyle("-fx-opacity: 1.0;");
+            } else {
+                if (!checkBox.isSelected()) {
+                    checkBox.setStyle("-fx-opacity: 0.5;");
+                    label.setStyle("-fx-opacity: 0.5;");
+                }
+            }
+        });
     }
 
     private void setChange(DatePicker field, Label lable, int index) {
@@ -235,6 +287,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     public void SignUp(ActionEvent e) {
+
         for (Boolean boolean1 : isInformationFilled) {
             if (boolean1 == false) {
                 return;
@@ -244,31 +297,57 @@ public class SignUpController implements Initializable {
         String fullname = nameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
-        Boolean gender = (genderBox.getSelectionModel().getSelectedItem() == "Male") ? true : false;
+        Boolean gender = (genderBox.getSelectionModel().getSelectedItem().equals("Male"));
         String job = jobOption.getSelectionModel().getSelectedItem();
         LocalDate date = birthMenu.getValue();
-        String profilePath = profilePic.getImage().getUrl();
 
-        User user = new User(password, email, fullname, gender, date, job, profilePath);
-
-        accountService.createAccount(user);
-
+        Account account;
         VBox newVBox;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FinishSignUp.fxml"));
-            newVBox = loader.load();
 
-            FinishSignUpController controller = loader.getController();
-            controller.setAccount(user,accountService);
+        if (isUserAccount) {
 
-            vBox.getChildren().removeAll();
-            vBox.getChildren().setAll(newVBox);
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            account = new User(password, email, fullname, gender, date, job, absolutePath);
+            accountService.createAccount(account);
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FinishSignUp.fxml"));
+                newVBox = loader.load();
+
+                FinishSignUpController controller = loader.getController();
+                controller.setAccount(account, accountService);
+
+                vBox.getChildren().removeAll();
+                vBox.getChildren().setAll(newVBox);
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        } else {
+            account = new Instructor(password, email, fullname, gender, date, job, absolutePath);
+            accountService.createAccount(account);
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MentorMenu.fxml"));
+                Parent mainPage = loader.load();
+                Scene scene = new Scene(mainPage);
+                Stage stage = new Stage();
+                stage.setFullScreen(true);
+                stage.setScene(scene);
+                ((Stage)vBox.getScene().getWindow()).close();
+                stage.show();
+                
+
+                MentorMenuController controller = loader.getController();
+                controller.setAccount(account);
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
     }
+
+
 
     public void setAccountService(AccountService accountService) {
         this.accountService = accountService;

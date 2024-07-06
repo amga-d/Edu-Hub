@@ -1,13 +1,18 @@
 package service;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Account;
+import model.AccountModel;
 
 public interface AccountService {
     
+    void saveAccounts();
     void createAccount(Account account);
-    Account getAccountByUsername(String username) throws Exception;
+    Account getAccountByEmail(String email) ;
+    Account getAccountById(String email) ;
     void updateAccount(Account account);
+    // void updateAccounts(List<Account> modifiedAccounts);
     void deleteAccount(String username);
     List<Account> getAllAccounts();
     boolean authenticate(String username, String password);

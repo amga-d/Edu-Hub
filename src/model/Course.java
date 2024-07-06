@@ -1,6 +1,10 @@
 package model;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,38 +17,55 @@ public class Course {
     private String tag;
     private List<Quiz> quizzes;
     private List<Material> materials;
-    private List<String> registeredUsers;
     private String courseId;
     private String courseImagePath;
+    private String instructorId;
+    private List<String> registeredUserIds;
+
+    private transient Image image;
+
+    private static final String IMAGE_DIR = "src/Resources/courses_Images";
     static private int countId = 0;
 
-    // Constructor
-    public Course(String courseName, String courseDescription) {
+
+
+    public Course(String courseName, String courseDescription, String tag,
+        String courseImagePath, Instructor instructor) {
         this.courseName = courseName;
         this.courseDescription = courseDescription;
-        this.courseRating = 0.0;
-        this.tag = "";
-        // this.courseImagePath =
+        this.courseRating = 5.0;
+        this.tag = tag;
         this.quizzes = new ArrayList<>();
         this.materials = new ArrayList<>();
-        this.registeredUsers = new ArrayList<>();
+        this.registeredUserIds = new ArrayList<>();
+        this.instructorId = instructor.getId();
         countId += 1;
         intialCourseId();
+        setImagePath(courseImagePath);
     }
 
-    public Course(String courseName, String courseDescription, double courseRating, String tag,
-            String courseImagePath) {
-        this.courseName = courseName;
-        this.courseDescription = courseDescription;
-        this.courseRating = courseRating;
-        this.tag = tag;
-        this.courseImagePath = courseImagePath;
-        this.quizzes = new ArrayList<>();
-        this.materials = new ArrayList<>();
-        this.registeredUsers = new ArrayList<>();
-        countId += 1;
-        intialCourseId();
+
+    private void setImagePath(String imagePath) {
+        if (imagePath != null && !imagePath.isEmpty()) {
+            try {
+                // Remove "file:/" prefix from the URL
+                String correctedPath = imagePath.replace("file:/", "");
+                Path sourcePath = Paths.get(correctedPath);
+                Path destinationDir = Paths.get(IMAGE_DIR);
+                if (!Files.exists(destinationDir)) {
+                    Files.createDirectories(destinationDir);
+                }
+                Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+                Files.copy(sourcePath, destinationPath);
+                this.courseImagePath = destinationDir.relativize(destinationPath).toString();
+                this.image = new Image(destinationPath.toUri().toString());
+            } catch (IOException e) {
+                System.err.println("An error occurred while copying the image: " + e.getMessage());
+            }
+        }
+    
     }
+    
 
     private void intialCourseId() {
         String idstr = courseName.substring(0, 2) + "@" + countId;
@@ -85,24 +106,20 @@ public class Course {
         return materials;
     }
 
-    public List<String> getRegisteredUsers() {
-        return registeredUsers;
-    }
 
     // Methods
     public void registerUser(User user) {
-        if (!registeredUsers.contains(user.getId())) {
-            registeredUsers.add(user.getId());
-            user.addCourse(this); // Add the course to the user's list
+        if (!registeredUserIds.contains(user.getId())) {
+            registeredUserIds.add(user.getId());
         }
     }
 
     public void unregisterUser(User user) {
-        if (registeredUsers.contains(user.getId())) {
-            registeredUsers.remove(user.getId());
-            user.removeCourse(this); // Remove the course from the user's list
+        if (registeredUserIds.contains(user.getId())) {
+            registeredUserIds.remove(user.getId());
         }
     }
+    
 
     public double countUserProgress(User user) {
         // Implement logic to count user's progress based on completed quizzes and
@@ -126,9 +143,7 @@ public class Course {
         this.materials = materials;
     }
 
-    public void setRegisteredUsers(List<String> registeredUsers) {
-        this.registeredUsers = registeredUsers;
-    }
+
 
     public String getCourseId() {
         return courseId;
@@ -154,17 +169,45 @@ public class Course {
         this.courseId = courseId;
     }
 
-    public String getCourseImagePath() {
+
+
+
+    public Image getImage() {
+        if (image == null && courseImagePath != null) {
+            Path imagePath = Paths.get(IMAGE_DIR).resolve(this.courseImagePath).toAbsolutePath();
+            image = new Image(imagePath.toUri().toString());
+        }
+        return image;
+    }
+
+    public String getImagePath() {
         return courseImagePath;
     }
 
-    public void setCourseImagePath(String courseImagePath) {
-        this.courseImagePath = courseImagePath;
+
+    public String getInstructorId() {
+        return instructorId;
     }
 
-    public Image getCourseImage() throws Exception{
-        return new Image(getClass().getResourceAsStream(courseImagePath));
 
+    public void setInstructorId(String instructorId) {
+        this.instructorId = instructorId;
     }
+
+
+    public List<String> getRegisteredUserIds() {
+        return registeredUserIds;
+    }
+
+
+    public void setRegisteredUserIds(List<String> registeredUserIds) {
+        this.registeredUserIds = registeredUserIds;
+    }
+
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
 
 }

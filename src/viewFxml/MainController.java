@@ -295,17 +295,14 @@ public class MainController implements Initializable {
         this.account = account;
         User user = (User) account;
         username.setText(user.getName());
-        String imagePath = user.getProfilePath();
 
         courseService.setAccountService(accountService);
-        if (imagePath != null) {
 
-            setProfile(imagePath);
-        }
+        setProfile(user.getImage());
+
     }
 
-    private void setProfile(String filePath) {
-        Image image = new Image(filePath);
+    private void setProfile(Image image) {
         profile.setImage(image);
         double radius = (Math.min(profile.getFitHeight(), profile.getFitWidth())) / 2;
         Circle clipCircle = new Circle(radius, radius, radius);

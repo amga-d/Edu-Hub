@@ -4,34 +4,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.image.Image;
+
 public class User extends Account {
     private String job;
     private boolean gender; // t: male , f:female
     private LocalDate date;
     private int age;
-    private String profilePath;
-    private List<String> enrolledCourses; // List of courses the user is enrolled in
 
-    public User(String password, String email, String fullName, Boolean gender, LocalDate date, String job) {
-        super(fullName,password, email);
-        this.gender = gender;
-        this.date = date;
-        this.job = job;
-        this.enrolledCourses = new ArrayList<>();
-        countAge();
-    }
-    
+    private List<String> registeredCoursesId; // List of courses the user is enrolled in
 
     // Getters and Setters for fullName and address
 
     public User(String password, String email, String fullName, boolean gender, LocalDate date, String job,
             String profilePath) {
-        super(fullName,password, email);
+        super(fullName,password, email,profilePath,"Mentor");
         this.job = job;
         this.gender = gender;
         this.date = date;
-        this.profilePath = profilePath;
-        this.enrolledCourses = new ArrayList<>();
+        this.registeredCoursesId = new ArrayList<>();
         countAge();
     }
 
@@ -71,28 +62,17 @@ public class User extends Account {
         this.age = age;
     }
 
-    public String getProfilePath() {
-        return profilePath;
-    }
 
-    public void setProfilePath(String profilePath) {
-        this.profilePath = profilePath;
-    }
-
-    public List<String> getEnrolledCourses() {
-        return enrolledCourses;
-    }
-
-    // Methods
-    public void addCourse(Course course) {
-        String id = course.getCourseId();
-        if (!enrolledCourses.contains(id)) {
-            enrolledCourses.add(id);
+    public void registerCourse(Course course) {
+        if (!registeredCoursesId.contains(course.getCourseId())) {
+            registeredCoursesId.add(course.getCourseId());
         }
     }
 
-    public void removeCourse(Course course) {
-        enrolledCourses.remove(course);
+    public void unregisterCourse(Course course) {
+        if (registeredCoursesId.contains(course.getCourseId())) {
+            registeredCoursesId.remove(course.getCourseId());
+        }
     }
 
     public double getCourseProgress(Course course) {
@@ -100,20 +80,13 @@ public class User extends Account {
         return 0.0;
     }
 
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "fullName='" +  
-                ", job='" + job + '\'' +
-                ", gender=" + gender +
-                ", date=" + date +
-                ", age=" + age +
-                ", profilePath='" + profilePath + '\'' +
-                '}';
+    public List<String> getRegisteredCoursesId() {
+        return registeredCoursesId;
     }
 
-    public void setEnrolledCourses(List<String> enrolledCourses) {
-        this.enrolledCourses = enrolledCourses;
+    public void setRegisteredCoursesId(List<String> registeredCoursesId) {
+        this.registeredCoursesId = registeredCoursesId;
     }
+    
 
 }

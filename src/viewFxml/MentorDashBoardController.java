@@ -20,7 +20,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import model.Account;
 import model.Course;
+import service.AccountService;
 import service.CourseService;
 import service.CourseServiceImpl;
 
@@ -74,7 +76,9 @@ public class MentorDashBoardController implements Initializable {
     @FXML
     private ImageView closeButton;
 
+    private String absolutePath;
     private CourseService courseService;
+    private Account account;
     private ObservableList<Course> courseList;
 
     @Override
@@ -119,13 +123,11 @@ public class MentorDashBoardController implements Initializable {
         if (courseName.isEmpty() || courseDescription.isEmpty() || courseCategory.isEmpty()) {
             worning.setText("Enter Course Information!!");
         } else {
-            if (courseImageCreate.getImage().getUrl().equals(
-                    "file:/C:/Users/amgad/OneDrive/Desktop/javaproject/EduSquad/bin/Resources/UplaodImage.png")) {
+            if (absolutePath == null){
                 worning.setText("Upload Course Image");
             } else {
-
                 Course course = new Course(courseName, courseDescription, 5, courseCategory,
-                        courseImageCreate.getImage().getUrl());
+                        absolutePath);
 
                 courseService.addCourse(course);
                 updateTableViewContent(courseService.getAllCourses());
@@ -148,14 +150,14 @@ public class MentorDashBoardController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Image File");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         fileChooser.setInitialDirectory(new File("src/Resources"));
         File selectedFile = fileChooser.showOpenDialog(createButton.getScene().getWindow());
 
         if (selectedFile != null) {
-            courseImageCreate.setImage(new Image(selectedFile.toURI().toString()));
+            absolutePath = selectedFile.toURI().toString();
+            courseImageCreate.setImage(new Image(absolutePath));
         }
-
     }
 
     private void updateLabels(Course course) {
@@ -167,7 +169,7 @@ public class MentorDashBoardController implements Initializable {
             courseCategoryLabel.setText(course.getTag());
 
             try {
-                courseImage.setImage(new Image(course.getCourseImagePath()));
+                courseImage.setImage(course.getImage());
             } catch (Exception e) {
                 courseImage.setImage(
                         new Image(getClass().getResourceAsStream("..//Resources/Courses_Images/NO_IMAGE.png")));
@@ -182,5 +184,9 @@ public class MentorDashBoardController implements Initializable {
             courseCategoryLabel.setText("");
 
         }
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

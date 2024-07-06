@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -85,6 +86,13 @@
                   <String fx:value="opacity" />
                </styleClass>
             </ComboBox>
+            <Label fx:id="mentorLabel" layoutX="214.0" layoutY="465.0" prefHeight="23.0" prefWidth="283.0" text="Mentor Account ">
+               <styleClass>
+                  <String fx:value="box-label" />
+                  <String fx:value="opacity" />
+               </styleClass>
+            </Label>
+            <CheckBox fx:id="mentorCheckbox" layoutX="353.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleMentorCheckBox" prefHeight="17.0" prefWidth="17.0" styleClass="opacity" />
          </children>
       </Pane>
    </children>

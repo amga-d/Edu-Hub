@@ -1,50 +1,93 @@
 package service;
 
+import model.Course;
+import model.Account;
+import model.Instructor;
+import model.User;
+import model.CourseModel;
+import model.AccountModel;
+import service.CourseService;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import model.Account;
-import model.AccountModel;
-import model.Course;
-import model.CourseModel;
-import model.User;
-
 public class CourseServiceImpl implements CourseService {
+
+    private List<Course> courses;
+    private List<Account> accounts;
+
     private CourseModel courseModel;
     private AccountService accountService;
-    private List<Course> courses;
 
-    public CourseServiceImpl() {
-        courseModel = new CourseModel();
-        courses = courseModel.loadCourses();
-        updateCountId();
-    }
-
-    public void setAccountService(AccountService accountService){
+    public CourseServiceImpl(AccountService accountService) {
+        this.courseModel = new CourseModel();
         this.accountService = accountService;
+        this.courses = courseModel.loadCourses();
+        this.accounts = accountService.getAllAccounts();
+        // establishRelationships();
     }
 
-    private void updateCountId() {
-        if (!courses.isEmpty()) {
-            String idstr = courses.get(courses.size() - 1).getCourseId();
-            int indx = idstr.indexOf("@");
-            int id = Integer.parseInt(idstr.substring(indx + 1));
-            Course.setCountId(id);
-        }
-    }
-
-    @Override
-    public void addCourse(Course course) {
-        // if (!courses.contains(course)) {
-        // }
-        courses.add(course);
+    private void saveCourses() {
         courseModel.saveCourses(courses);
     }
 
+    // private void establishRelationships() {
+    // // Establish relationships between courses and instructors
+    // for (Course course : courses) {
+    // for (Account account : accounts) {
+    // if (account instanceof Instructor) {
+    // Instructor instructor = (Instructor) account;
+    // if (course.getInstructorId().equals(instructor.getId())) {
+    // instructor.addCourse(course);
+    // course.setInstructor(instructor);
+    // }
+    // }
+    // }
+    // }
+
+    // // Establish relationships between courses and users
+    // for (Course course : courses) {
+    // for (Account account : accounts) {
+    // if (account instanceof User) {
+    // User user = (User) account;
+    // if (user.getRegisteredCourseIds().contains(course.getId())) {
+    // user.registerCourse(course);
+    // course.registerUser(user);
+    // }
+    // }
+
+    // }
+    // }
+    // }
+
     @Override
-    public void removeCourse(Course course) {
+    public void createCourse(Instructor instructor, String courseName, String courseDescription, String courseCategory,
+            String imagePath) {
+        Course course = new Course(courseName, courseDescription, courseCategory, imagePath, instructor);
+        courses.add(course);
+        instructor.addCourse(course);
+        saveCourses();
+        accountService.saveAccounts(); // Save accounts to update instructor's courses
+    }
+
+    @Override
+    public void deleteCourse(Course course) {
         courses.remove(course);
+        Instructor instructor = (Instructor) accountService.getAccountById(course.getInstructorId());
+        instructor.removeCourse(course);
+
+        List<String> userIds = course.getRegisteredUserIds();
+        for (Account account : accounts) {
+            if (account instanceof User) {
+                User user = (User) account;
+                if (userIds.contains(user.getId())) {
+                    user.unregisterCourse(course);
+                }
+            }
+        }
+
+        saveCourses();
+        accountService.saveAccounts(); // Save accounts to update all users' courses
     }
 
     @Override
@@ -55,7 +98,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course getCourseByName(String courseName) {
         for (Course course : courses) {
-            if (course.getCourseName().equalsIgnoreCase(courseName)) {
+            if (course.getCourseName().equals(courseName)) {
                 return course;
             }
         }
@@ -63,55 +106,76 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void registerUser(Course course, User user) {
-        course.registerUser(user);
-        courseModel.saveCourses(courses);
-        accountService.updateAccount(user);
-    }
-
-    @Override
-    public void unregisterUser(Course course, User user) {
-        course.unregisterUser(user);
-        courseModel.saveCourses(courses);
-        accountService.updateAccount(user);
-    }
-
-    @Override
-    public double getUserProgress(Course course, User user) {
-        return course.countUserProgress(user);
-    }
-
-    @Override
-    public void updateCourse(Course course) {
-        for (int i = 0; i < courses.size(); i++) {
-            if (courses.get(i).getCourseId().equals(course.getCourseId())) {
-                courses.set(i, course);
-                break;
-            }
-        }
-        courseModel.saveCourses(courses);
-    }
-
-    @Override
-    public List<Course> getRandomCourses(int num) {
-        List<Course> shuffledList = new ArrayList<>(courses);
-        Collections.shuffle(shuffledList); 
-        if (num > courses.size()) {
-            num = courses.size();
-        }
-        return shuffledList.subList(0, num);
-    }
-
-    @Override
-    public List<Course> getCourseByCategory(String category) {
-        List<Course> categorizedCourses = new ArrayList<>();
+    public List<Course> getCoursesByInstructor(Instructor instructor) {
+        List<Course> instructorCourses = new ArrayList<Course>();
         for (Course course : courses) {
-            if (course.getTag().equalsIgnoreCase(category)) {
-                categorizedCourses.add(course);
+            if (course.getInstructorId().equals(instructor.getId())) {
+                instructorCourses.add(course);
             }
         }
-        return categorizedCourses;
+        return instructorCourses;
     }
 
-    
+    @Override
+    public void registerUserToCourse(User user, Course course) {
+        course.registerUser(user);
+        user.registerCourse(course);
+        saveCourses();
+        accountService.saveAccounts();
+    }
+
+
+    @Override
+    public void unregisterUserFromCourse(User user, Course course) {
+        course.unregisterUser(user);
+        user.unregisterCourse(course);
+        saveCourses();
+        accountService.saveAccounts();
+    }
+
+    // @Override
+    // public List<Account> getUsersRegisterdToCourse(Course course) {
+    //     List<String> userIds = course.getRegisteredUserIds();
+    //     List<Account> registeredUsers = new ArrayList<>();
+    //     for (Account account : accounts) {
+    //         if (account instanceof User) {
+    //             User user = (User) account;
+    //             if (userIds.contains(user.getId())) {
+    //                 registeredUsers.add(account);
+    //             }
+    //         }
+    //     }
+    //     return registeredUsers;
+    // }
+
 }
+
+// @Override
+// public double getUserProgress(Course course, User user) {
+// return course.countUserProgress(user);
+// }
+
+// @Override
+// public List<Course> getRandomCourses(int num) {
+// List<Course> shuffledList = new ArrayList<>(courses);
+// Collections.shuffle(shuffledList);
+// if (num > courses.size()) {
+// num = courses.size();
+// }
+// return shuffledList.subList(0, num);
+// }
+
+// @Override
+// public List<Course> getCourseByCategory(String category) {
+// List<Course> categorizedCourses = new ArrayList<>();
+// for (Course course : courses) {
+// if (course.getTag().equalsIgnoreCase(category)) {
+// categorizedCourses.add(course);
+// }
+// }
+// return categorizedCourses;
+// }
+
+// public void setAccountService(AccountService accountService){
+// this.accountService = accountService;
+// }

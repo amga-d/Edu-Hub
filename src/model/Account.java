@@ -1,16 +1,31 @@
 package model;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javafx.scene.image.Image;
+
 public abstract class Account {
     private String name;
     private String password;
     private String email;
+    private String role;
     private String Id;
+    private String imagePath;
+    private transient Image image;
 
     private static int countId = 0;
+    private static final String IMAGE_DIR = "src/Resources/account_images";
 
-    public Account(String name,String password, String email) {
+    public Account(String name,String password, String email, String imagePath,String role) {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.role = role;
+        setImagePath(imagePath);
         countId++;
         intialAccountId();
         
@@ -49,7 +64,7 @@ public abstract class Account {
     public String getName() {
         return name;
     }
-
+    
 
     public void setName(String name) {
         this.name = name;
@@ -73,6 +88,43 @@ public abstract class Account {
 
     public static void setCountId(int countId) {
         Account.countId = countId;
+    }
+
+
+
+    private void setImagePath(String imagePath) {
+        if (imagePath != null && !imagePath.isEmpty()) {
+            try {
+                // Remove "file:/" prefix from the URL
+                String correctedPath = imagePath.replace("file:/", "");
+                Path sourcePath = Paths.get(correctedPath);
+                Path destinationDir = Paths.get(IMAGE_DIR);
+                if (!Files.exists(destinationDir)) {
+                    Files.createDirectories(destinationDir);
+                }
+                Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+                Files.copy(sourcePath, destinationPath);
+                this.imagePath = destinationDir.relativize(destinationPath).toString();
+                this.image = new Image(destinationPath.toUri().toString());
+            } catch (IOException e) {
+                System.err.println("An error occurred while copying the image: " + e.getMessage());
+            }
+        }
+    
+    }
+
+
+    
+    public Image getImage() {
+        if (image == null && imagePath != null) {
+            Path imagePath = Paths.get(IMAGE_DIR).resolve(this.imagePath).toAbsolutePath();
+            image = new Image(imagePath.toUri().toString());
+        }
+        return image;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 
 }

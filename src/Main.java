@@ -10,6 +10,7 @@ import javafx.stage.StageStyle;
 import viewFxml.loginController;
 
 public class Main extends Application {
+    
     AccountService accountService = new AccountServiceImpl();
 
 

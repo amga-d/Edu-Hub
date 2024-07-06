@@ -1,3 +1,4 @@
+
 package model;
 
 import java.io.File;
@@ -15,45 +16,33 @@ public class CourseModel {
 
     public CourseModel() {
         xStream = new XStream(new StaxDriver());
-        xStream.allowTypes(new Class[] { ArrayList.class,
-                model.Course.class,
-                model.Material.class, model.Quiz.class });
+        xStream.allowTypes(new Class[] { ArrayList.class, model.Course.class, model.Material.class, model.Quiz.class });
     }
 
     public void saveCourses(List<Course> courses) {
         String xml = xStream.toXML(courses);
-        FileOutputStream outputStream;
-
-        try {
+        try (FileOutputStream outputStream = new FileOutputStream(XML_FILE)) {
             byte[] data = xml.getBytes("UTF-8");
-            outputStream = new FileOutputStream(XML_FILE);
             outputStream.write(data);
-            outputStream.close();
-
         } catch (Exception e) {
             System.out.println("An error occur while saving Courses:" + e.getMessage());
         }
     }
 
     public List<Course> loadCourses() {
-        List<Course> courses = new ArrayList<Course>();
+        List<Course> courses = new ArrayList<>();
         File file = new File(XML_FILE);
         if (!file.exists()) {
-            return new ArrayList<>();
+            return courses;
         }
 
-        FileInputStream inputStream;
-        try {
-            inputStream = new FileInputStream(file);
+        try (FileInputStream inputStream = new FileInputStream(file)) {
             int content;
-            char c;
-            String s = "";
+            StringBuilder s = new StringBuilder();
             while ((content = inputStream.read()) != -1) {
-                c = (char) content;
-                s += c;
+                s.append((char) content);
             }
-            courses = (List<Course>) xStream.fromXML(s);
-            inputStream.close();
+            courses = (List<Course>) xStream.fromXML(s.toString());
         } catch (Exception e) {
             System.err.println("An error occur while loading Courses" + e.getMessage());
         }

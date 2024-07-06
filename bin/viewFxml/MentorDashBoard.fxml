@@ -189,7 +189,7 @@
             </Label>
             <ImageView fx:id="courseImageCreate" fitHeight="198.0" fitWidth="340.0" layoutX="103.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Resources/UplaodImage.png" />
+                  <Image url="@../Resources/Courses_Images/UploadCourseImage.png" />
                </image>
             </ImageView>
             <Label layoutX="566.0" layoutY="193.0" text="Course Name :" textFill="#059379">
@@ -215,9 +215,9 @@
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
             </Button>
-            <ImageView fx:id="closeButton" fitHeight="32.0" fitWidth="32.0" layoutX="1126.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="closeButton" fitHeight="48.0" fitWidth="31.0" layoutX="1126.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Resources/Courses_Images/UploadCourseImage.png" />
+                  <Image url="@../Resources/closeButton.png" />
                </image>
             </ImageView>
             <Label fx:id="worning" layoutX="566.0" layoutY="460.0" prefHeight="48.0" textFill="#fa0909">

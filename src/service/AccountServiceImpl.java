@@ -7,8 +7,8 @@ import model.Account;
 import model.AccountModel;
 
 public class AccountServiceImpl implements AccountService {
-
-    private static List<Account> accountList;
+    
+    private List<Account> accountList;
     private AccountModel accountModel;
 
     public AccountServiceImpl() {
@@ -16,6 +16,12 @@ public class AccountServiceImpl implements AccountService {
         accountList = accountModel.loadAccounts();
         updateCountId();
     }
+  
+    @Override
+    public void saveAccounts(){
+        accountModel.saveAccounts(accountList);
+    }
+
 
     public void updateCountId() {
         if (!accountList.isEmpty()) {
@@ -38,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account getAccountByUsername(String email) {
+    public Account getAccountByEmail(String email) {
         for (Account account : accountList) {
             if (account.getEmail().equals(email)) {
                 return account;
@@ -47,17 +53,45 @@ public class AccountServiceImpl implements AccountService {
         return null; // Account not found
     }
 
+    public Account getAccountById(String id) {
+        for (Account account : accountList) {
+            if (account.getId().equals(id)) {
+                return account;
+            }
+        }
+        return null; // Account not found
+    }
+
+
     @Override
     public void updateAccount(Account account) {
         // Find the account in the list and update its properties
         for (int i = 0; i < accountList.size(); i++) {
-            if (accountList.get(i).getEmail().equals(account.getEmail())) {
+            if (accountList.get(i).getId().equals(account.getId())) {
                 accountList.set(i, account);
                 break;
             }
+            saveAccounts();
         }
-        accountModel.saveAccounts(accountList);
     }
+
+    // private void updateAccountWithoutSaving(Account account){
+    //     for (int i = 0; i < accountList.size(); i++) {
+    //         if (accountList.get(i).getId().equals(account.getId())) {
+    //             accountList.set(i, account);
+    //             break;
+    //         }
+            
+    //     }
+    // }
+    
+    // @Override
+    // public void updateAccounts(List<Account> modifiedAccounts){
+    //     for (Account account : modifiedAccounts) {
+    //         updateAccountWithoutSaving(account);
+    //     }
+    //     saveAccounts();
+    // }
     
 
     @Override
@@ -72,8 +106,8 @@ public class AccountServiceImpl implements AccountService {
         return new ArrayList<>(accountList); // Return a copy of the list to prevent direct modification
     }
 
-    public boolean authenticate(String username, String password) {
-        Account account = getAccountByUsername(username);
+    public boolean authenticate(String email, String password) {
+        Account account = getAccountByEmail(email);
         return account != null && account.getPassword().equals(password);
     }
 }
