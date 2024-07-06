@@ -172,19 +172,17 @@ public class MainController implements Initializable {
     private Account account;
     private CourseService courseService;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         // initialize the courseService
-        courseService = new CourseServiceImpl();
         setCalender();
 
         // handleBoxClick(homeButton);
         homeButton.getChildren().get(0).getStyleClass().add("selected");
         homeImage.setVisible(true);
-        HomeController homeController = openPage("Home.fxml").getController();
-        homeController.setCourseService(courseService);
-        homeController.intiialHomePage();
+
 
         homeButton.setOnMouseClicked(e -> {
 
@@ -246,6 +244,7 @@ public class MainController implements Initializable {
 
     }
 
+
     private void setCalender() {
         LocalDate currentDate = LocalDate.now();
         int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
@@ -274,7 +273,7 @@ public class MainController implements Initializable {
             }
         }
     }
-
+    @FXML
     public void handleBoxClick(Pane clickedBox) {
 
         courseButton.getChildren().get(0).getStyleClass().remove("selected");
@@ -291,16 +290,8 @@ public class MainController implements Initializable {
 
     }
 
-    public void setAccount(Account account, AccountService accountService) {
-        this.account = account;
-        User user = (User) account;
-        username.setText(user.getName());
 
-        courseService.setAccountService(accountService);
 
-        setProfile(user.getImage());
-
-    }
 
     private void setProfile(Image image) {
         profile.setImage(image);
@@ -308,6 +299,7 @@ public class MainController implements Initializable {
         Circle clipCircle = new Circle(radius, radius, radius);
         profile.setClip(clipCircle);
     }
+
 
     private FXMLLoader openPage(String fileName) { // open page and return FXMLLOADER
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
@@ -322,6 +314,21 @@ public class MainController implements Initializable {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    public void initialMain(){
+        HomeController homeController = openPage("Home.fxml").getController();
+        homeController.setCourseService(courseService);
+        homeController.intiialHomePage();
+    }
+    public void setAccount(Account account, AccountService accountService) {
+        this.account = account;
+        User user = (User) account;
+        username.setText(user.getName());
+        this.courseService = new CourseServiceImpl(accountService);
+        setProfile(user.getImage());
+        initialMain();
     }
 
 }

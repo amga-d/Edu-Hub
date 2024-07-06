@@ -10,10 +10,10 @@ public interface AccountService {
     void saveAccounts();
     void createAccount(Account account);
     Account getAccountByEmail(String email) ;
-    Account getAccountById(String email) ;
+    Account getAccountById(String Id) ;
     void updateAccount(Account account);
     // void updateAccounts(List<Account> modifiedAccounts);
-    void deleteAccount(String username);
+    void deleteAccount(Account account);
     List<Account> getAllAccounts();
     boolean authenticate(String username, String password);
 }

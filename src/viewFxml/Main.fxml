@@ -136,7 +136,7 @@
                                  <children>
                                     <Label text="Ardhito Rahman">
                                        <font>
-                                          <Font name="Arial Rounded MT Bold" size="14.0" />
+                                          <Font name="Poppins Bold" size="14.0" />
                                        </font>
                                     </Label>
                                     <Label text="UI/UX Designer">
@@ -407,14 +407,14 @@
                </children>
             </HBox>
             <Pane prefHeight="71.0" prefWidth="304.0" />
-            <Pane prefHeight="66.0" prefWidth="246.0" style="-fx-background-color: F4F4F8;">
+            <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="66.0" prefWidth="246.0" style="-fx-background-color: F4F4F8;">
                <children>
                   <ImageView fx:id="profile" fitHeight="45.0" fitWidth="45.0" layoutX="188.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="hover-image">
                      <image>
                         <Image url="@../Resources/codicon_account.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="username" alignment="TOP_RIGHT" layoutX="25.0" layoutY="22.0" prefHeight="20.0" prefWidth="155.0" text="Amgad aref" textAlignment="RIGHT">
+                  <Label fx:id="username" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutY="22.0" prefHeight="23.0" prefWidth="180.0" text="Amgad aref" textAlignment="RIGHT">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>

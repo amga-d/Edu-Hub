@@ -41,11 +41,13 @@ public class Course {
         this.instructorId = instructor.getId();
         countId += 1;
         intialCourseId();
+        this.courseImagePath = courseImagePath;
         setImagePath(courseImagePath);
     }
 
 
     private void setImagePath(String imagePath) {
+    
         if (imagePath != null && !imagePath.isEmpty()) {
             try {
                 // Remove "file:/" prefix from the URL
@@ -210,4 +212,15 @@ public class Course {
     }
 
 
+    @Override
+    public String toString() {
+        return "Course{" + 
+        "courseId='" + courseId + '\'' +
+        ", courseName='" + courseName + '\'' +
+        ", courseImagePath='" + courseImagePath + '\'' +
+        ", instructorId='" + instructorId + '\'' +
+        ", registeredUserIds=" + registeredUserIds +
+        "} " ;
+
+    }
 }

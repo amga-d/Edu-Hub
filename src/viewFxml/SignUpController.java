@@ -82,36 +82,58 @@ public class SignUpController implements Initializable {
     private String absolutePath;
     private Boolean isUserAccount;
 
-    String[] jobOptions = { "Software Developer/Engineer",
-            "Data Scientist",
-            "Project Manager",
-            "Teacher/Educator",
-            "Student",
-            "Researcher",
-            "Business Analyst",
-            "Graphic Designer",
-            "Marketing Specialist",
-            "Sales Representative",
-            "Human Resources Manager",
-            "Healthcare Professional",
-            "Finance/Accounting Professional",
-            "Consultant",
-            "Entrepreneur/Startup Founder",
-            "Legal Professional",
-            "Administrator",
-            "IT Support Specialist",
-            "Customer Service Representative",
-            "Engineer (Other)",
-            "Architect",
-            "Journalist/Writer",
-            "Operations Manager",
-            "Product Manager",
-            "Executive/Director",
-            "Logistics/Supply Chain Manager",
-            "Trainer/Coach",
-            "Scientist",
-            "Artist",
-            "Other" };
+    String[] jobOptions = { "Student",
+    "Accountant",
+    "Administrative Assistant",
+    "Advertising Manager",
+    "Aerospace Engineer",
+    "Architect",
+    "Artist",
+    "Attorney",
+    "Audiologist",
+    "Author",
+    "Biologist",
+    "Biomedical Engineer",
+    "Bookkeeper",
+    "Business Analyst",
+    "Carpenter",
+    "Chef",
+    "Chemical Engineer",
+    "Civil Engineer",
+    "Clinical Psychologist",
+    "Computer Programmer",
+    "Construction Manager",
+    "Consultant",
+    "Counselor",
+    "Customer Service Representative",
+    "Data Analyst",
+    "Dentist",
+    "Designer",
+    "Doctor",
+    "Electrical Engineer",
+    "Elementary School Teacher",
+    "Environmental Scientist",
+    "Event Planner",
+    "Financial Analyst",
+    "Firefighter",
+    "Graphic Designer",
+    "Human Resources Manager",
+    "Industrial Engineer",
+    "IT Specialist",
+    "Journalist",
+    "Lawyer",
+    "Librarian",
+    "Marketing Manager",
+    "Mechanical Engineer",
+    "Nurse",
+    "Occupational Therapist",
+    "Pharmacist",
+    "Physical Therapist",
+    "Pilot",
+    "Police Officer",
+    "Software Developer",
+    "Teacher",
+    "Other" };
     Image temporary = new Image(getClass().getResourceAsStream("/Resources/account_images/UploadProfile.png"));
 
     @Override
@@ -338,7 +360,8 @@ public class SignUpController implements Initializable {
                 
 
                 MentorMenuController controller = loader.getController();
-                controller.setAccount(account);
+                controller.setAccount(account,accountService);
+                controller.InitialMenu();
 
             } catch (IOException e1) {
                 e1.printStackTrace();

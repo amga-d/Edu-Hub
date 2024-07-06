@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Account;
 import model.AccountModel;
+import model.User;
 
 public class AccountServiceImpl implements AccountService {
     
@@ -95,10 +96,14 @@ public class AccountServiceImpl implements AccountService {
     
 
     @Override
-    public void deleteAccount(String username) {
-    // Remove the account from the list based on username
-    accountList.removeIf(account -> account.getEmail().equals(username));
-    // Optionally, perform additional logic such as deleting from a database
+    public void deleteAccount(Account account) {
+        if (account instanceof User) {
+            accountList.remove(account);
+            saveAccounts();
+        }
+    // // Remove the account from the list based on username
+    // accountList.removeIf(account -> account.getEmail().equals(username));
+    // // Optionally, perform additional logic such as deleting from a database
     }
 
     @Override

@@ -171,8 +171,8 @@
       </TableView>
       <VBox alignment="TOP_CENTER" layoutX="1067.0" layoutY="227.0" prefHeight="200.0" prefWidth="160.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" styleClass="table-button" text="Edit" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="129.0" styleClass="table-button" text="Delete" />
+            <Button fx:id="editCourseButton" mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" styleClass="table-button" text="Edit" />
+            <Button fx:id="deleteCourseButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="48.0" prefWidth="129.0" styleClass="table-button" text="Delete" />
             <Button fx:id="newCourseButton" layoutX="10.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleNewCourseButton" prefHeight="48.0" prefWidth="131.0" styleClass="table-button" text="New Course" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />

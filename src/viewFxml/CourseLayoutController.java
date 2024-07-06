@@ -42,6 +42,7 @@ public class CourseLayoutController implements Initializable{
         courseDesciption.setText(Course.getCourseDescription());
         rate.setText(Course.getCourseRating()+"");
         tag.setText(Course.getTag());
+        courseImage.setImage(Course.getImage());
     }
     
 }

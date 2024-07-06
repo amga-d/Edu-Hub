@@ -53,7 +53,7 @@ public class loginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        t = new TranslateTransition(Duration.millis(500), vBox);
+        t = new TranslateTransition(Duration.millis(700), vBox);
         try {
             this.loader = new FXMLLoader(getClass().getResource("SignIn.fxml"));
             pane = loader.load();

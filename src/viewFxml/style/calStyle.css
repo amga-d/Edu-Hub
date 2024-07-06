@@ -6,22 +6,22 @@
 .month-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-family: "Poppins";
     -fx-text-fill: #1a1a1a;
 }
 
 .day-label {
     -fx-font-size: 10px;
     -fx-text-fill: #1a1a1a;
-    /* -fx-font-weight: bold; */
-    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-weight: bold;
+    -fx-font-family: "Poppins";
 }
 
 .date-label {
     -fx-font-size: 10px;
     -fx-text-fill: #1a1a1a;
-    /* -fx-font-weight: bold; */
-    -fx-font-family:"Arial Rounded MT Bold";
+    -fx-font-weight: bold;
+    -fx-font-family:"Poppins";
 }
 
 .selected {

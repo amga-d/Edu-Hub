@@ -56,7 +56,19 @@ public class Instructor extends Account {
     public void removeCourse(Course course){
         coursesId.remove(course.getCourseId());
     }
+    @Override
+    public String toString() {
 
+        return "Instructor{" +  
+        "name="+super.getName()+
+        ", Id="+super.getId()+
+        ", birthDate=" + birthDate +
+        ", gender=" + gender +
+        ", specializatoin=" + specializatoin +
+        ", coursesId=" + coursesId +
+        '}';
+        
+    }
 
     
 

@@ -25,6 +25,7 @@ public abstract class Account {
         this.password = password;
         this.email = email;
         this.role = role;
+        this.imagePath = imagePath;
         setImagePath(imagePath);
         countId++;
         intialAccountId();

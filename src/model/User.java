@@ -18,7 +18,7 @@ public class User extends Account {
 
     public User(String password, String email, String fullName, boolean gender, LocalDate date, String job,
             String profilePath) {
-        super(fullName,password, email,profilePath,"Mentor");
+        super(fullName,password, email,profilePath,"Student");
         this.job = job;
         this.gender = gender;
         this.date = date;
@@ -88,5 +88,11 @@ public class User extends Account {
         this.registeredCoursesId = registeredCoursesId;
     }
     
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + super.getId() + ", name=" + super.getId() + ", gender"
+        + gender + ", date=" + date + ", age=" + age + ", registeredCoursesId"
+        + registeredCoursesId + '}';
+    }
 
 }

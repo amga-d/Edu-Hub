@@ -15,6 +15,8 @@ public interface CourseService {
     Course getCourseByName(String courseName);
     List<Course> getCoursesByInstructor(Instructor instructor);
     List<Course> getAllCourses();
+    List<Course> getRandomCourses(int num);
+    List<Course> getCourseByCategory(String category);
     
     // List<Account>getUsersRegisterdToCourse(Course course);
     // void createCourse(Instructor instructor, String courseName, String courseDescription,String tag, String imagePath);
@@ -24,8 +26,6 @@ public interface CourseService {
     // // void removeCourse(Course course);
 
     // List<Course> getAllCourses();
-    // List<Course> getRandomCourses(int num);
-    // List<Course> getCourseByCategory(String category);
     // Course getCourseByName(String courseName);
 
     // void setAccountService(AccountService accountService);

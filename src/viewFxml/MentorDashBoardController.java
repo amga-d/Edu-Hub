@@ -5,9 +5,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.Action;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import model.Account;
 import model.Course;
+import model.Instructor;
 import service.AccountService;
 import service.CourseService;
 import service.CourseServiceImpl;
@@ -78,22 +82,13 @@ public class MentorDashBoardController implements Initializable {
 
     private String absolutePath;
     private CourseService courseService;
-    private Account account;
+    private Instructor instructor;
     private ObservableList<Course> courseList;
+    private AccountService accountService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        courseService = new CourseServiceImpl();
-        courseList = FXCollections.observableArrayList(courseService.getAllCourses());
-
-        courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        totalUsersColumn.setCellValueFactory(
-                cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getRegisteredUsers().size()));
-
-        courseCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("tag"));
-
-        courseTableView.setItems(courseList);
 
         courseTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> updateLabels(newValue));
@@ -126,11 +121,8 @@ public class MentorDashBoardController implements Initializable {
             if (absolutePath == null){
                 worning.setText("Upload Course Image");
             } else {
-                Course course = new Course(courseName, courseDescription, 5, courseCategory,
-                        absolutePath);
-
-                courseService.addCourse(course);
-                updateTableViewContent(courseService.getAllCourses());
+                courseService.createCourse(instructor, courseName, courseDescription, courseCategory, absolutePath);
+                updateTableViewContent(courseService.getCoursesByInstructor(instructor));
 
                 createCoursePane.setVisible(false);
                 courseNameCreate.setText("");
@@ -138,6 +130,15 @@ public class MentorDashBoardController implements Initializable {
                 courseCategoryCreate.setText("");
             }
 
+        }
+    }
+
+    @FXML
+    public void handleDeleteButton(ActionEvent e){
+        Course course = courseTableView.getSelectionModel().getSelectedItem();
+        if (course != null) {
+            courseService.deleteCourse(course);
+            updateTableViewContent(courseService.getCoursesByInstructor(instructor));
         }
     }
 
@@ -165,7 +166,7 @@ public class MentorDashBoardController implements Initializable {
             courseNameLabel.setText(course.getCourseName());
             courseDescriptionLabel.setText(course.getCourseDescription());
             courseRatingLabel.setText(course.getCourseRating() + "");
-            totalUsersLabel.setText(course.getRegisteredUsers().size() + "");
+            totalUsersLabel.setText(course.getRegisteredUserIds().size() + "");
             courseCategoryLabel.setText(course.getTag());
 
             try {
@@ -186,7 +187,22 @@ public class MentorDashBoardController implements Initializable {
         }
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccount(Account account,AccountService accountService) {
+        this.instructor = (Instructor)account;
+        this.accountService = accountService;
+        this.courseService = new CourseServiceImpl(accountService);
+        
+    }
+
+    public void initialDashBoard() {
+        courseList = FXCollections.observableArrayList(courseService.getCoursesByInstructor(instructor));
+
+        courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        totalUsersColumn.setCellValueFactory(
+                cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getRegisteredUserIds().size()));
+
+        courseCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("tag"));
+
+        courseTableView.setItems(courseList);
     }
 }

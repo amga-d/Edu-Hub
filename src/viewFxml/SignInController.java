@@ -87,7 +87,7 @@ public class SignInController implements Initializable {
         
     }
 
-    public void openMainPage(Account account, AccountService accountService) {
+    public void openMainPage(Account account) {
         Parent root;
         if (account instanceof User){
             try {
@@ -108,13 +108,15 @@ public class SignInController implements Initializable {
             try {
                 root = loader.load();
                 MentorMenuController controller = loader.getController();
-                controller.setAccount(account);
+                controller.setAccount(account,accountService);
                 controller.InitialMenu();
                 openStage(root);
             } catch (IOException e) {
 
                 e.printStackTrace();
             }
+
+
 
         }
         else{
@@ -150,7 +152,7 @@ public class SignInController implements Initializable {
         else if (accountService.authenticate(email, password)) {
             errorLabel.setText("");
             try {
-                openMainPage(accountService.getAccountByUsername(email),accountService);
+                openMainPage(accountService.getAccountByEmail(email));
             } catch (Exception e1) {
                 System.err.println("an error occur 'Account not found'"+e1.getMessage());
             }

@@ -41,6 +41,7 @@ public class MentorMenuController implements Initializable{
     private Label nameLabel;
 
     private Account account;
+    private AccountService accountService;
 
 
     
@@ -50,8 +51,9 @@ public class MentorMenuController implements Initializable{
     }
 
   
-    public void setAccount(Account account){
-        this.account= account;
+    public void setAccount(Account account,AccountService accountService){
+        this.account = account;
+        this.accountService = accountService;
     }
 
     public void InitialMenu(){
@@ -68,7 +70,8 @@ public class MentorMenuController implements Initializable{
             borderPane.setCenter(pane);
 
             MentorDashBoardController controller = loader.getController();
-            controller.setAccount(account);
+            controller.setAccount(account,accountService);
+            controller.initialDashBoard();
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
