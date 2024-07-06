@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="1862.0" style="-fx-background-color: F4F4F8;" stylesheets="@style/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewFxml.ProfileLayoutController">
+   <left>
+      <Pane prefHeight="793.0" prefWidth="206.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" fillWidth="false" layoutY="-2.0" prefHeight="793.0" prefWidth="206.0" style="-fx-background-color: F4F4F8; -fx-border-width: 1 1 0 0;">
+               <children>
+                  <VBox prefHeight="640.0" prefWidth="192.0" spacing="13.0">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <children>
+                        <Pane fx:id="homeButton" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="64.0" layoutY="16.0" styleClass="label-text" text="Home" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Home.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="homeImage" fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Resources/Home2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="courseButton" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="64.0" layoutY="16.0" styleClass="label-text" text="Course" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/courses.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="coursImage" fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Resources/courses2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="contactButton" layoutX="10.0" layoutY="80.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="64.0" layoutY="16.0" styleClass="label-text" text="Chat" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Chat.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="chatImage" fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Resources/Chat2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="forumButton" layoutX="10.0" layoutY="228.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="64.0" layoutY="16.0" styleClass="label-text" text="Forum" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/fourm.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="forumImage" fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Resources/fourm2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="profileButton" layoutX="10.0" layoutY="301.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="64.0" layoutY="16.0" styleClass="label-text" text="Profile" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/profileSetting.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="profileImage" fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Resources/profileSetting2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Pane fx:id="profileButton1" layoutX="20.0" layoutY="791.0" prefHeight="38.0" prefWidth="142.0" styleClass="menu-button">
+               <children>
+                  <Label layoutX="52.0" layoutY="10.0" text="Sign out" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="9.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/Sign_out_squre.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </left>
+   <top>
+      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="71.0" prefWidth="200.0" style="-fx-background-color: #F4F4F8;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="206.0" spacing="7.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/main_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label text=".edu-Hub" textFill="#0d1925">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="11.0" />
+               </padding>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <Pane fx:id="logoutButton" layoutX="52.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutY="-1.0" prefHeight="163.0" prefWidth="1656.0">
+               <children>
+                  <ImageView fitHeight="162.0" fitWidth="1656.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../Resources/profile_background3.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <VBox layoutY="161.0" prefHeight="734.0" prefWidth="178.0" style="-fx-background-color: #059379;">
+               <children>
+                  <Pane prefHeight="131.0" prefWidth="186.0">
+                     <children>
+                        <ImageView fitHeight="115.0" fitWidth="114.0" layoutX="32.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resources/profile.png" />
+                           </image>
+                        </ImageView>
+                        <Pane layoutY="86.0" prefHeight="45.0" prefWidth="178.0">
+                           <children>
+                              <Label layoutX="42.0" layoutY="8.0" prefHeight="27.0" prefWidth="143.0" text="Personal Info" textFill="#bcb8b8" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="31.0" fitWidth="39.0" layoutX="-1.0" layoutY="6.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../Resources/application.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <VBox prefHeight="159.0" prefWidth="187.0">
+                     <children>
+                        <Pane prefHeight="158.0" prefWidth="186.0" style="-fx-background-color: #1A2130;" translateY="5.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="178.0">
+                                 <children>
+                                    <Label layoutX="44.0" layoutY="15.0" text="{Occupation}" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Italic" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="34.0" fitWidth="32.0" layoutY="6.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../Resources/bag.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane layoutY="52.0" prefHeight="45.0" prefWidth="178.0">
+                                 <children>
+                                    <Label layoutX="44.0" layoutY="13.0" text="{BirthDate}" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Italic" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="25.0" fitWidth="33.0" layoutY="6.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../Resources/birthdate1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane layoutY="97.0" prefHeight="45.0" prefWidth="178.0">
+                                 <children>
+                                    <Label layoutX="47.0" layoutY="15.0" text="{Target}" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Italic" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="31.0" fitWidth="39.0" layoutX="-3.0" layoutY="6.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../Resources/traget.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children></VBox>
+            <Pane layoutX="178.0" layoutY="161.0" prefHeight="119.0" prefWidth="1479.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="{Account_Owner_Name}">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children></Pane>
+   </center>
+</BorderPane>
