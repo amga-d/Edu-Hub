@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="1330.0" style="-fx-background-color: white;" stylesheets="@viewFxml/style/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="64.0" prefWidth="1321.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: rgba(0, 0, 0, 0.15);">
+         <children>
+            <Label layoutX="28.0" layoutY="22.0" text="Fourm">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="130.0" layoutY="71.0" pannable="true" prefHeight="663.0" prefWidth="823.0" style="-fx-background-color: white;" styleClass="custom-scroll-pane" vbarPolicy="NEVER">
+         <content>
+            <ImageView fitHeight="1311.0" fitWidth="820.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/Forum_Page.png" />
+               </image>
+            </ImageView>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

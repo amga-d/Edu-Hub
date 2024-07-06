@@ -24,8 +24,14 @@ public class Work extends Application {
 
     @Override
     public void start(Stage arg0) throws Exception {
-        Parent rooParent = FXMLLoader.load(getClass().getResource("viewFxml/MentorMenu.fxml"));
-        Scene scene = new Scene(rooParent);
+        AccountService accountService = new AccountServiceImpl();
+        Account account = accountService.getAccountById("Am@4");
+        FXMLLoader loader = new FXMLLoader (getClass().getResource("viewFXML/Main.fxml"));
+            Parent mainPage = loader.load();
+            MainController mainController = loader.getController();
+            mainController.setAccount(account,accountService);
+        // Parent rooParent = FXMLLoader.load(getClass().getResource("viewFxml/MentorMenu.fxml"));
+        Scene scene = new Scene(mainPage);
         arg0.setScene(scene);
         arg0.show();
         // arg0.setFullScreen(true);

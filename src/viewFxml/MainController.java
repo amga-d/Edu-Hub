@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -171,6 +172,7 @@ public class MainController implements Initializable {
 
     private Account account;
     private CourseService courseService;
+    private Node rightSide; 
 
 
     @Override
@@ -178,6 +180,7 @@ public class MainController implements Initializable {
 
         // initialize the courseService
         setCalender();
+        rightSide = borderPane.getRight();
 
         // handleBoxClick(homeButton);
         homeButton.getChildren().get(0).getStyleClass().add("selected");
@@ -191,7 +194,7 @@ public class MainController implements Initializable {
             homeImage.setVisible(true);
             homeButton.getChildren().get(0).getStyleClass().add("selected");
 
-            HomeController homeController1 = openPage("Home.fxml").getController();
+            HomeController homeController1 = openPage("Home.fxml",false).getController();
             homeController1.setCourseService(courseService);
             homeController1.intiialHomePage();
 
@@ -204,7 +207,7 @@ public class MainController implements Initializable {
             coursImage.setVisible(true);
             courseButton.getChildren().get(0).getStyleClass().add("selected");
 
-            CoursesContorller couresesContorller = openPage("Courses.fxml").getController();
+            CoursesContorller couresesContorller = openPage("Courses.fxml",false).getController();
             couresesContorller.setCourseService(courseService);
             couresesContorller.initialCoursePage();
 
@@ -215,6 +218,8 @@ public class MainController implements Initializable {
             handleBoxClick(clickedBox);
             forumImage.setVisible(true);
             forumButton.getChildren().get(0).getStyleClass().add("selected");
+            openPage("FourmLayout.fxml",true).getController();
+
         });
         profileButton.setOnMouseClicked(e -> {
             Pane clickedBox = (Pane) e.getSource();
@@ -229,7 +234,7 @@ public class MainController implements Initializable {
             contactButton.getChildren().get(0).getStyleClass().add("selected");
 
         });
-        notificationButton.setOnMouseEntered(e -> {
+        notificationButton.setOnMouseClicked(e -> {
             notificationPane.setVisible(true);
         });
         notificationButton.setOnMouseExited(e -> {
@@ -301,13 +306,19 @@ public class MainController implements Initializable {
     }
 
 
-    private FXMLLoader openPage(String fileName) { // open page and return FXMLLOADER
+    private FXMLLoader openPage(String fileName,Boolean removeSideBar) { // open page and return FXMLLOADER
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
 
         Parent root;
         try {
             root = loader.load();
             loader.getController();
+            if (removeSideBar) {
+                    borderPane.setRight(null);
+            }
+            else{
+                borderPane.setRight(rightSide);
+            }
             borderPane.setCenter(root);
             return loader; // return the loader to be to get the controller class
         } catch (IOException e) {
@@ -318,7 +329,7 @@ public class MainController implements Initializable {
 
 
     public void initialMain(){
-        HomeController homeController = openPage("Home.fxml").getController();
+        HomeController homeController = openPage("Home.fxml",false).getController();
         homeController.setCourseService(courseService);
         homeController.intiialHomePage();
     }
