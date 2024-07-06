@@ -119,6 +119,7 @@ public class CoursesContorller implements Initializable {
     }
 
     public void initialCoursePage() {
+        allButton.getStyleClass().add("selected");
 
         List<Course> courses = courseService.getRandomCourses(12);
         addCourses(courses);

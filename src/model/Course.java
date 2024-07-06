@@ -162,13 +162,8 @@ public class Course {
         this.courseImagePath = courseImagePath;
     }
 
-    public Image getCourseImage() {
-        try {
-            return new Image(courseImagePath);
-        } catch (Exception e) {
-            System.out.println();
-            return null;
-        }
+    public Image getCourseImage() throws Exception{
+        return new Image(getClass().getResourceAsStream(courseImagePath));
 
     }
 

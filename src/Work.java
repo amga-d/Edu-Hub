@@ -28,7 +28,7 @@ public class Work extends Application {
         Scene scene = new Scene(rooParent);
         arg0.setScene(scene);
         arg0.show();
-        arg0.setFullScreen(true);
+        // arg0.setFullScreen(true);
     }
     // @Override
     // public void start(Stage arg0) throws Exception {
