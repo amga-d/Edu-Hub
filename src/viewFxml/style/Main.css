@@ -16,6 +16,16 @@
     -fx-text-fill: rgba(13, 25, 37, 0.50);;
 }
 
+.contactus-label{
+    
+}
+
+.contactus-label .selected{
+    -fx-text-fill: -fx-secondary;
+}
+
+
+
 
 /* .menu-button.selected{
     -fx-background-color: -fx-secondary;

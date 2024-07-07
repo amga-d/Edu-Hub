@@ -13,6 +13,7 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -169,10 +170,20 @@ public class MainController implements Initializable {
 
     @FXML
     private Label username;
+    @FXML
+    private Pane signOutPane;
+    @FXML
+    private Pane contactUsPane;
+    @FXML 
+    private ImageView contactUsState2Icon;
 
     private Account account;
     private CourseService courseService;
     private Node rightSide; 
+
+    
+
+
 
 
     @Override
@@ -221,12 +232,15 @@ public class MainController implements Initializable {
             openPage("FourmLayout.fxml",true).getController();
 
         });
+
+
         profileButton.setOnMouseClicked(e -> {
             Pane clickedBox = (Pane) e.getSource();
             handleBoxClick(clickedBox);
             profileImage.setVisible(true);
             profileButton.getChildren().get(0).getStyleClass().add("selected");
         });
+
         contactButton.setOnMouseClicked(e -> {
             Pane clickedBox = (Pane) e.getSource();
             handleBoxClick(clickedBox);
@@ -234,6 +248,16 @@ public class MainController implements Initializable {
             contactButton.getChildren().get(0).getStyleClass().add("selected");
 
         });
+
+        contactUsPane.setOnMouseClicked(e ->{
+            Pane clickedBox = (Pane) e.getSource();
+            handleBoxClick(clickedBox);
+            contactUsState2Icon.setVisible(true);
+            contactUsPane.getChildren().get(0).getStyleClass().add("selected");
+
+        });
+
+
         notificationButton.setOnMouseClicked(e -> {
             notificationPane.setVisible(true);
         });
@@ -286,12 +310,14 @@ public class MainController implements Initializable {
         forumButton.getChildren().get(0).getStyleClass().remove("selected");
         profileButton.getChildren().get(0).getStyleClass().remove("selected");
         contactButton.getChildren().get(0).getStyleClass().remove("selected");
+        contactUsPane.getChildren().get(0).getStyleClass().remove("selected");
 
         coursImage.setVisible(false);
         homeImage.setVisible(false);
         chatImage.setVisible(false);
         profileImage.setVisible(false);
         forumImage.setVisible(false);
+        contactUsState2Icon.setVisible(false);
 
     }
 
