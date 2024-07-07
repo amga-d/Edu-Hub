@@ -141,6 +141,10 @@ public class SignUpController implements Initializable {
         isInformationFilled = new Boolean[6];
         isUserAccount = true;
 
+        int startYear = 2000;
+        LocalDate startDate = LocalDate.of(startYear, 1, 1);
+        birthMenu.setValue(startDate);
+
         for (int i = 0; i < 6; i++) {
             isInformationFilled[i] = false;
         }

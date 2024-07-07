@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,7 +27,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController implements Initializable {
 
@@ -174,20 +178,14 @@ public class MainController implements Initializable {
     private Pane signOutPane;
     @FXML
     private Pane contactUsPane;
-    @FXML 
+    @FXML
     private ImageView contactUsState2Icon;
-    @FXML 
+    @FXML
     private Label contactUSlabel;
-
 
     private Account account;
     private CourseService courseService;
-    private Node rightSide; 
-
-    
-
-
-
+    private Node rightSide;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -200,14 +198,13 @@ public class MainController implements Initializable {
         homeButton.getChildren().get(0).getStyleClass().add("selected");
         homeImage.setVisible(true);
 
-
         homeButton.setOnMouseClicked(e -> {
 
             handleBoxClick();
             homeImage.setVisible(true);
             homeButton.getChildren().get(0).getStyleClass().add("selected");
 
-            HomeController homeController1 = openPage("Home.fxml",false).getController();
+            HomeController homeController1 = openPage("Home.fxml", false).getController();
             homeController1.setCourseService(courseService);
             homeController1.intiialHomePage();
 
@@ -218,7 +215,7 @@ public class MainController implements Initializable {
             coursImage.setVisible(true);
             courseButton.getChildren().get(0).getStyleClass().add("selected");
 
-            CoursesContorller couresesContorller = openPage("Courses.fxml",false).getController();
+            CoursesContorller couresesContorller = openPage("Courses.fxml", false).getController();
             couresesContorller.setCourseService(courseService);
             couresesContorller.initialCoursePage();
 
@@ -228,10 +225,9 @@ public class MainController implements Initializable {
             handleBoxClick();
             forumImage.setVisible(true);
             forumButton.getChildren().get(0).getStyleClass().add("selected");
-            openPage("FourmLayout.fxml",true).getController();
+            openPage("FourmLayout.fxml", true).getController();
 
         });
-
 
         profileButton.setOnMouseClicked(e -> {
             handleBoxClick();
@@ -246,14 +242,16 @@ public class MainController implements Initializable {
 
         });
 
-
-        contactUsPane.setOnMouseClicked(e ->{
+        contactUsPane.setOnMouseClicked(e -> {
             handleBoxClick();
             contactUsState2Icon.setVisible(true);
             contactUSlabel.getStyleClass().add("selected");
             openPage("ContactUsLayout.fxml", true);
         });
 
+        signOutPane.setOnMouseClicked(e -> {
+            handleSignOut();
+        });
 
         notificationButton.setOnMouseClicked(e -> {
             notificationPane.setVisible(true);
@@ -270,8 +268,49 @@ public class MainController implements Initializable {
 
     }
 
+    private void handleSignOut() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        try {
+            Parent root = loader.load();
+            loginController logincontroller = loader.getController();
+            logincontroller.setAccountService(courseService.getAccountService());
+            logincontroller.load();
+
+            root.setClip(createRoundedRectangle(900, 600, 30));
+
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+
+            Image icon = new Image(getClass().getResourceAsStream("/Resources/logo.jpeg"));
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setTitle("edu-Hub");
+            stage.getIcons().add(icon);
+            
+            ((Stage) signOutPane.getScene().getWindow()).close();
+            
+            stage.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private javafx.scene.shape.Rectangle createRoundedRectangle(double width, double height, double radius) {
+        javafx.scene.shape.Rectangle rectangle = new javafx.scene.shape.Rectangle(width, height);
+        rectangle.setArcWidth(radius);
+        rectangle.setArcHeight(radius);
+        return rectangle;
+    }
 
     private void setCalender() {
+
+   
         LocalDate currentDate = LocalDate.now();
         int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
 
@@ -299,7 +338,7 @@ public class MainController implements Initializable {
             }
         }
     }
-    
+
     public void handleBoxClick() {
 
         courseButton.getChildren().get(0).getStyleClass().remove("selected");
@@ -318,9 +357,6 @@ public class MainController implements Initializable {
 
     }
 
-
-
-
     private void setProfile(Image image) {
         profile.setImage(image);
         double radius = (Math.min(profile.getFitHeight(), profile.getFitWidth())) / 2;
@@ -328,8 +364,7 @@ public class MainController implements Initializable {
         profile.setClip(clipCircle);
     }
 
-
-    private FXMLLoader openPage(String fileName,Boolean removeSideBar) { // open page and return FXMLLOADER
+    private FXMLLoader openPage(String fileName, Boolean removeSideBar) { // open page and return FXMLLOADER
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
 
         Parent root;
@@ -337,9 +372,8 @@ public class MainController implements Initializable {
             root = loader.load();
             loader.getController();
             if (removeSideBar) {
-                    borderPane.setRight(null);
-            }
-            else{
+                borderPane.setRight(null);
+            } else {
                 borderPane.setRight(rightSide);
             }
             borderPane.setCenter(root);
@@ -350,12 +384,12 @@ public class MainController implements Initializable {
         }
     }
 
-
-    public void initialMain(){
-        HomeController homeController = openPage("Home.fxml",false).getController();
+    public void initialMain() {
+        HomeController homeController = openPage("Home.fxml", false).getController();
         homeController.setCourseService(courseService);
         homeController.intiialHomePage();
     }
+
     public void setAccount(Account account, AccountService accountService) {
         this.account = account;
         User user = (User) account;

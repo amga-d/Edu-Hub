@@ -17,6 +17,7 @@ public interface CourseService {
     List<Course> getAllCourses();
     List<Course> getRandomCourses(int num);
     List<Course> getCourseByCategory(String category);
+    AccountService getAccountService();
     
     // List<Account>getUsersRegisterdToCourse(Course course);
     // void createCourse(Instructor instructor, String courseName, String courseDescription,String tag, String imagePath);

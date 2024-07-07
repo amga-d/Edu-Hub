@@ -28,6 +28,9 @@ public class CourseServiceImpl implements CourseService {
         updateCountId();
     }
 
+    public AccountService getAccountService(){
+        return this.accountService;
+    }
     private void saveCourses() {
         courseModel.saveCourses(courses);
     }
