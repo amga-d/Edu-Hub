@@ -182,6 +182,10 @@ public class MainController implements Initializable {
     private ImageView contactUsState2Icon;
     @FXML
     private Label contactUSlabel;
+    @FXML
+    private ImageView myLearningImage;
+    @FXML
+    private Pane myLearningButton;
 
     private Account account;
     private CourseService courseService;
@@ -251,6 +255,13 @@ public class MainController implements Initializable {
 
         signOutPane.setOnMouseClicked(e -> {
             handleSignOut();
+        });
+
+        myLearningButton.setOnMouseClicked(e->{
+            handleBoxClick();
+            myLearningImage.setVisible(true);
+            myLearningButton.getChildren().get(0).getStyleClass().add("selected");
+            openPage("MyLearingLayout.fxml", false);
         });
 
         notificationButton.setOnMouseClicked(e -> {
@@ -347,13 +358,16 @@ public class MainController implements Initializable {
         profileButton.getChildren().get(0).getStyleClass().remove("selected");
         contactButton.getChildren().get(0).getStyleClass().remove("selected");
         contactUsPane.getChildren().get(0).getStyleClass().remove("selected");
+        myLearningButton.getChildren().get(0).getStyleClass().remove("selected");
 
         coursImage.setVisible(false);
         homeImage.setVisible(false);
         chatImage.setVisible(false);
         profileImage.setVisible(false);
         forumImage.setVisible(false);
+        myLearningImage.setVisible(false);
         contactUsState2Icon.setVisible(false);
+        
 
     }
 

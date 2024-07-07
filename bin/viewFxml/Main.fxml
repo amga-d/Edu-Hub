@@ -123,16 +123,16 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <VBox layoutX="35.0" layoutY="206.0" prefHeight="377.69" prefWidth="300.0" spacing="30.0" style="-fx-background-color: F4F4F8; -fx-background-radius: 10;">
+                  <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="35.0" layoutY="206.0" prefHeight="377.0" prefWidth="300.0" style="-fx-background-color: F4F4F8; -fx-background-radius: 10;">
                      <children>
-                        <HBox prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                        <HBox prefHeight="66.0" prefWidth="300.0" spacing="10.0">
                            <children>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Resources/mentor1.png" />
                                  </image>
                               </ImageView>
-                              <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="179.0" spacing="8.0">
+                              <VBox fillWidth="false" prefHeight="45.0" prefWidth="179.0" spacing="8.0">
                                  <children>
                                     <Label text="Ardhito Rahman">
                                        <font>
@@ -144,7 +144,6 @@
                                           <Font name="Arial" size="10.0" />
                                        </font>
                                     </Label>
-                                    <Separator prefWidth="200.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -152,18 +151,19 @@
                               <Insets left="26.0" />
                            </padding>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="50.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                        <Separator prefWidth="232.0" />
+                        <HBox prefHeight="66.0" prefWidth="300.0" spacing="10.0">
                            <children>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Resources/mentor1.png" />
                                  </image>
                               </ImageView>
-                              <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="179.0" spacing="8.0">
+                              <VBox fillWidth="false" prefHeight="45.0" prefWidth="179.0" spacing="8.0">
                                  <children>
                                     <Label text="Ardhito Rahman">
                                        <font>
-                                          <Font name="Arial Rounded MT Bold" size="14.0" />
+                                          <Font name="Poppins Bold" size="14.0" />
                                        </font>
                                     </Label>
                                     <Label text="UI/UX Designer">
@@ -171,26 +171,29 @@
                                           <Font name="Arial" size="10.0" />
                                        </font>
                                     </Label>
-                                    <Separator prefWidth="200.0" />
                                  </children>
                               </VBox>
                            </children>
                            <padding>
                               <Insets left="26.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="131.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                        <Separator layoutX="44.0" layoutY="228.0" prefWidth="232.0" />
+                        <HBox layoutX="10.0" layoutY="230.0" prefHeight="66.0" prefWidth="300.0" spacing="10.0">
                            <children>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Resources/mentor1.png" />
                                  </image>
                               </ImageView>
-                              <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="179.0" spacing="8.0">
+                              <VBox fillWidth="false" prefHeight="45.0" prefWidth="179.0" spacing="8.0">
                                  <children>
                                     <Label text="Ardhito Rahman">
                                        <font>
-                                          <Font name="Arial Rounded MT Bold" size="14.0" />
+                                          <Font name="Poppins Bold" size="14.0" />
                                        </font>
                                     </Label>
                                     <Label text="UI/UX Designer">
@@ -198,26 +201,29 @@
                                           <Font name="Arial" size="10.0" />
                                        </font>
                                     </Label>
-                                    <Separator prefWidth="200.0" />
                                  </children>
                               </VBox>
                            </children>
                            <padding>
                               <Insets left="26.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="212.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                        <Separator layoutX="44.0" layoutY="395.0" prefWidth="232.0" />
+                        <HBox layoutX="10.0" layoutY="197.0" prefHeight="66.0" prefWidth="300.0" spacing="10.0">
                            <children>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Resources/mentor1.png" />
                                  </image>
                               </ImageView>
-                              <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="179.0" spacing="8.0">
+                              <VBox fillWidth="false" prefHeight="45.0" prefWidth="179.0" spacing="8.0">
                                  <children>
                                     <Label text="Ardhito Rahman">
                                        <font>
-                                          <Font name="Arial Rounded MT Bold" size="14.0" />
+                                          <Font name="Poppins Bold" size="14.0" />
                                        </font>
                                     </Label>
                                     <Label text="UI/UX Designer">
@@ -225,20 +231,22 @@
                                           <Font name="Arial" size="10.0" />
                                        </font>
                                     </Label>
-                                    <Separator prefWidth="200.0" />
                                  </children>
                               </VBox>
                            </children>
                            <padding>
                               <Insets left="26.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                      <padding>
-                        <Insets top="40.0" />
+                        <Insets top="30.0" />
                      </padding>
                   </VBox>
-                  <Label layoutX="35.0" layoutY="167.0" prefHeight="16.0" prefWidth="269.0" text="Mentors">
+                  <Label layoutX="35.0" layoutY="178.0" prefHeight="16.0" prefWidth="269.0" text="Mentors">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="16.0" />
                      </font>
@@ -258,6 +266,12 @@
                         <Image url="@../Resources/notification.png" />
                      </image>
                   </ImageView>
+                  <Label layoutX="40.0" layoutY="613.0" prefHeight="16.0" prefWidth="269.0" text="Learning Process">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="35.0" layoutY="646.0" prefHeight="130.0" prefWidth="300.0" style="-fx-background-color: F4F4F8; -fx-background-radius: 10;" />
                </children></Pane>
          </children>
       </VBox>
@@ -298,6 +312,21 @@
                               <ImageView fx:id="coursImage" fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../Resources/courses2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="myLearningButton" layoutX="10.0" layoutY="83.0" prefHeight="60.0" prefWidth="192.0" styleClass="menu-button">
+                           <children>
+                              <Label layoutX="64.0" layoutY="16.0" styleClass="label-text" text="My Learning" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/myLearning1.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="myLearningImage" fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Resources/myLearning2.png" />
                                  </image>
                               </ImageView>
                            </children>
