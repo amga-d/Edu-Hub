@@ -27,8 +27,16 @@
       </HBox>
       <Pane prefHeight="603.0" prefWidth="930.0">
          <children>
-            <ScrollPane fx:id="inProgressPane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: green; -fx-region-background: green;" styleClass="custom-scroll-pane" vbarPolicy="NEVER" />
-            <ScrollPane fx:id="completePane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: white; -fx-region-background: white;" styleClass="custom-scroll-pane" vbarPolicy="NEVER" visible="false" />
+            <ScrollPane fx:id="inProgressPane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: green; -fx-region-background: green;" styleClass="custom-scroll-pane" vbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="inProgressCourseContainer" prefWidth="900.0" spacing="20.0" />
+               </content>
+            </ScrollPane>
+            <ScrollPane fx:id="completePane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: white; -fx-region-background: white;" styleClass="custom-scroll-pane" vbarPolicy="NEVER" visible="false">
+               <content>
+                  <VBox fx:id="completedCourseContainer" prefWidth="900.0" spacing="20.0" />
+               </content>
+            </ScrollPane>
          </children>
       </Pane>
    </children>

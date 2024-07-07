@@ -210,6 +210,7 @@ public class MainController implements Initializable {
 
             HomeController homeController1 = openPage("Home.fxml", false).getController();
             homeController1.setCourseService(courseService);
+            homeController1.setAccount(account);
             homeController1.intiialHomePage();
 
         });
@@ -221,6 +222,7 @@ public class MainController implements Initializable {
 
             CoursesContorller couresesContorller = openPage("Courses.fxml", false).getController();
             couresesContorller.setCourseService(courseService);
+            couresesContorller.setAccount(account);
             couresesContorller.initialCoursePage();
 
         });

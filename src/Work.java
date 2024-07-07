@@ -26,7 +26,7 @@ public class Work extends Application {
     public void start(Stage arg0) throws Exception {
 
        AccountService accountService = new AccountServiceImpl();
-        Account account = accountService.getAccountById("am@1");
+        Account account = accountService.getAccountByEmail("amgad@gmail.com");
         FXMLLoader loader = new FXMLLoader (getClass().getResource("viewFXML/Main.fxml"));
             Parent mainPage = loader.load();
             MainController mainController = loader.getController();
@@ -35,7 +35,7 @@ public class Work extends Application {
         Scene scene = new Scene(mainPage);
         arg0.setScene(scene);
         arg0.show();
-        arg0.setFullScreen(true);
+        // arg0.setFullScreen(true);
         // arg0.setFullScreen(true);
     }
     // @Override
