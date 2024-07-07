@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="87.0" fitWidth="148.0" pickOnBounds="true" translateX="17.0" translateY="20.0">
+         <image>
+            <Image url="@../Resources/courses_Images/ArchDesign.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="101.0" prefWidth="583.0" translateX="20.0">
+         <children>
+            <Label layoutX="14.0" layoutY="5.0" text="Architecture Design" textFill="#e34807" translateY="20.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="56.0" prefHeight="50.0" prefWidth="577.0" text="This course is made for the people who want to have a good grasp on archtecture for thier academic studies, we're focusing on various things on this course for academic purposes." wrapText="true" />
+         </children>
+      </Pane>
+      <Pane prefHeight="128.0" prefWidth="179.0" translateX="20.0">
+         <children>
+            <Pane layoutX="-4.0" layoutY="97.0" prefHeight="42.0" prefWidth="187.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" translateY="-10.0">
+               <children>
+                  <Label layoutX="31.0" layoutY="12.0" text="Add to Linkedin" textFill="#0792dd">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</HBox>
