@@ -32,7 +32,7 @@
         <quizzes></quizzes>
         <materials></materials>
         <courseId>Ph@3</courseId>
-        <courseImagePath>PhysicalChemistry.png</courseImagePath>
+        <courseImagePath>PhyscialChemistry.png</courseImagePath>
         <instructorId>Jo@1</instructorId>
         <registeredUserIds></registeredUserIds>
     </model.Course>
@@ -226,8 +226,8 @@
         <quizzes></quizzes>
         <materials></materials>
         <courseId>Ca@15</courseId>
-        <courseImagePath>CalculusI.png</courseImagePath>
-        <instructorId>Mi@6</instructorId>
+        <courseImagePath>Calculus.png</courseImagePath>
+        <instructorId>Ar@6</instructorId>
         <registeredUserIds></registeredUserIds>
     </model.Course>
     <model.Course>
@@ -239,7 +239,7 @@
         <materials></materials>
         <courseId>LA@16</courseId>
         <courseImagePath>LinearAlgebra.png</courseImagePath>
-        <instructorId>Mi@6</instructorId>
+        <instructorId>Ar@6</instructorId>
         <registeredUserIds></registeredUserIds>
     </model.Course>
     <model.Course>
@@ -251,7 +251,32 @@
         <materials></materials>
         <courseId>St@17</courseId>
         <courseImagePath>Statistics.png</courseImagePath>
-        <instructorId>Mi@6</instructorId>
+        <instructorId>Ar@6</instructorId>
         <registeredUserIds></registeredUserIds>
     </model.Course>
+    <model.Course>
+        <courseName>Discrete Mathematics</courseName>
+        <courseDescription>This course covers the fundamental concepts of discrete mathematics, including logic, set theory, combinatorics, graph theory, and algorithms. It is essential for computer science and engineering students.</courseDescription>
+        <courseRating>5.0</courseRating>
+        <tag>Mathematics</tag>
+        <quizzes></quizzes>
+        <materials></materials>
+        <courseId>DM@18</courseId>
+        <courseImagePath>DiscreteMathematics.png</courseImagePath>
+        <instructorId>Ar@6</instructorId>
+        <registeredUserIds></registeredUserIds>
+    </model.Course>
+    <model.Course>
+        <courseName>Number Theory</courseName>
+        <courseDescription>This course explores the properties and relationships of numbers, particularly integers. Topics include divisibility, prime numbers, congruences, and Diophantine equations. It is fundamental for advanced mathematics and cryptography.</courseDescription>
+        <courseRating>5.0</courseRating>
+        <tag>Mathematics</tag>
+        <quizzes></quizzes>
+        <materials></materials>
+        <courseId>NT@19</courseId>
+        <courseImagePath>NubmerTheory.png</courseImagePath>
+        <instructorId>Ar@6</instructorId>
+        <registeredUserIds></registeredUserIds>
+    </model.Course>
+
 </list>

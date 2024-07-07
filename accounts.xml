@@ -89,10 +89,16 @@
         <email>armstrong@gmail.com</email>
         <role>Mentor</role>
         <Id>Ar@6</Id>
-        <imagePath>file:/media/morad/Work/College/AppDevelopment/JavaFx/Project/Edu-Hub/src/Resources/account_images/ArmstrongBellingham.png</imagePath>
+        <imagePath>ArmstrongBellingham.png</imagePath>
         <birthDate>1999-11-09</birthDate>
         <gender>true</gender>
         <specializatoin>Data Analyst</specializatoin>
-        <coursesId></coursesId>
+        <coursesId>
+            <string>Ca@15</string>
+            <string>LA@16</string>
+            <string>St@17</string>
+            <string>DM@18</string>
+            <string>NT@19</string>
+        </coursesId>
     </model.Instructor>
 </list>
