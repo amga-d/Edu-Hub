@@ -17,9 +17,8 @@ public class TestingDataModel {
         // accountService.createAccount(new User("11", "11", "11", true, LocalDate.now(), "ss", ""));
         // accountService.createAccount(new User("111", "111", "111", true, LocalDate.now(), "ss", ""));  
 
-       
         
-        accountService.createAccount(new Instructor("100", "34323", "32332", false, LocalDate.now(), "dd", "s"));
+        // accountService.createAccount(new Instructor("100", "34323", "32332", false, LocalDate.now(), "dd", "s"));
         
         // Instructor instructor = (Instructor)accountService.getAccountById("32@2");
         // User user = (User)accountService.getAccountById("11@2");
@@ -28,12 +27,12 @@ public class TestingDataModel {
 
         // courseService.deleteCourse(courseService.getCourseByName("geee"));
         // courseService.deleteCourse(courseService.getCourseByName("geee"));
-        // courseService.deleteCourse(courseService.getCourseByName("Basic Calculus"));
-        List<Course> courses = courseService.getAllCourses();
-        // courseService.deleteCourse(courses.getFirst());
-        for (Course course : courses) {
-            System.out.println(course);
-        }
+        // // courseService.deleteCourse(courseService.getCourseByName("Basic Calculus"));
+        // List<Course> courses = courseService.getAllCourses();
+        // // courseService.deleteCourse(courses.getFirst());
+        // for (Course course : courses) {
+        //     System.out.println(course);
+        // }
 
 
         

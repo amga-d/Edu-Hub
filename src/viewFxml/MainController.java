@@ -176,6 +176,9 @@ public class MainController implements Initializable {
     private Pane contactUsPane;
     @FXML 
     private ImageView contactUsState2Icon;
+    @FXML 
+    private Label contactUSlabel;
+
 
     private Account account;
     private CourseService courseService;
@@ -243,11 +246,12 @@ public class MainController implements Initializable {
 
         });
 
+
         contactUsPane.setOnMouseClicked(e ->{
             handleBoxClick();
             contactUsState2Icon.setVisible(true);
-            contactUsPane.getChildren().get(0).getStyleClass().add("selected");
-
+            contactUSlabel.getStyleClass().add("selected");
+            openPage("ContactUsLayout.fxml", true);
         });
 
 

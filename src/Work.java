@@ -24,8 +24,9 @@ public class Work extends Application {
 
     @Override
     public void start(Stage arg0) throws Exception {
-        AccountService accountService = new AccountServiceImpl();
-        Account account = accountService.getAccountById("Am@4");
+
+       AccountService accountService = new AccountServiceImpl();
+        Account account = accountService.getAccountById("am@1");
         FXMLLoader loader = new FXMLLoader (getClass().getResource("viewFXML/Main.fxml"));
             Parent mainPage = loader.load();
             MainController mainController = loader.getController();

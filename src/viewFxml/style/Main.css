@@ -17,10 +17,12 @@
 }
 
 .contactus-label{
-
+    -fx-font-family:  "Poppins Light";
+    -fx-font-size: 14px;
+    -fx-text-fill: #80868e;
 }
 
-.contactus-label .selected_label{
+.contactus-label .selected{
     -fx-text-fill: -fx-secondary;
 }
 
