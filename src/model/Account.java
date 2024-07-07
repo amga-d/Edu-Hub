@@ -1,7 +1,9 @@
 package model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -93,26 +95,67 @@ public abstract class Account {
 
 
 
-    private void setImagePath(String imagePath) {
-        if (imagePath != null && !imagePath.isEmpty()) {
-            try {
-                // Remove "file:/" prefix from the URL
-                String correctedPath = imagePath.replace("file:/", "");
-                Path sourcePath = Paths.get(correctedPath);
-                Path destinationDir = Paths.get(IMAGE_DIR);
-                if (!Files.exists(destinationDir)) {
-                    Files.createDirectories(destinationDir);
-                }
-                Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
-                Files.copy(sourcePath, destinationPath);
-                this.imagePath = destinationDir.relativize(destinationPath).toString();
-                this.image = new Image(destinationPath.toUri().toString());
-            } catch (IOException e) {
-                System.err.println("An error occurred while copying the image: " + e.getMessage());
-            }
+    
+    void setImagePath(String imagePath) {
+        if (imagePath == null || imagePath.isEmpty()) {
+            return;
         }
     
+        try {
+            if (!imagePath.startsWith("file:/")) {
+                throw new IllegalArgumentException("Invalid image path format.");
+            }
+            String correctedPath = imagePath.replace("file:/", "");
+    
+            Path sourcePath = Paths.get(correctedPath);
+            if (!Files.exists(sourcePath)) {
+                throw new FileNotFoundException("Source image file not found.");
+            }
+    
+            Path destinationDir = Paths.get(IMAGE_DIR);
+            if (!Files.exists(destinationDir)) {
+                Files.createDirectories(destinationDir);
+            }
+    
+            Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+            int counter = 1;
+            while (Files.exists(destinationPath)) {
+                String fileName = sourcePath.getFileName().toString();
+                String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                String fileNameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
+                destinationPath = destinationDir.resolve(fileNameWithoutExtension + "_" + counter + "." + fileExtension);
+                counter++;
+            }
+    
+            Files.copy(sourcePath, destinationPath);
+            this.imagePath = destinationDir.relativize(destinationPath).toString();
+            this.image = new Image(destinationPath.toUri().toString());
+    
+        } catch (IOException e) {
+            System.err.println("An error occurred while copying the image: " + e.getMessage());
+        }
     }
+    
+// private void setImagePath(String imagePath) {
+    //     if (imagePath != null && !imagePath.isEmpty()) {
+    //         try {
+    //             // Remove "file:/" prefix from the URL
+    //             String correctedPath = imagePath.replace("file:/", "");
+    //             Path sourcePath = Paths.get(correctedPath);
+    //             Path destinationDir = Paths.get(IMAGE_DIR);
+    //             if (!Files.exists(destinationDir)) {
+    //                 Files.createDirectories(destinationDir);
+    //             }
+    //             Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+    //             Files.copy(sourcePath, destinationPath);
+    //             this.imagePath = destinationDir.relativize(destinationPath).toString();
+    //             this.image = new Image(destinationPath.toUri().toString());
+    //         } catch (IOException e) {
+    //             System.err.println("An error occurred while copying the image: " + e.getMessage());
+    //         }
+    //     }
+    
+    // }
 
 
     

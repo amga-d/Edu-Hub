@@ -17,10 +17,10 @@
 }
 
 .contactus-label{
-    
+
 }
 
-.contactus-label .selected{
+.contactus-label .selected_label{
     -fx-text-fill: -fx-secondary;
 }
 
@@ -70,6 +70,7 @@
 .category-buttons.selected{
     -fx-text-fill: black;
 }
+
 
 
 

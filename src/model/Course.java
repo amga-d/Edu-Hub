@@ -1,7 +1,9 @@
 package model;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,10 +29,8 @@ public class Course {
     private static final String IMAGE_DIR = "src/Resources/courses_Images";
     static private int countId = 0;
 
-
-
     public Course(String courseName, String courseDescription, String tag,
-        String courseImagePath, Instructor instructor) {
+            String courseImagePath, Instructor instructor) {
         this.courseName = courseName;
         this.courseDescription = courseDescription;
         this.courseRating = 5.0;
@@ -45,29 +45,69 @@ public class Course {
         setImagePath(courseImagePath);
     }
 
-
-    private void setImagePath(String imagePath) {
-    
-        if (imagePath != null && !imagePath.isEmpty()) {
-            try {
-                // Remove "file:/" prefix from the URL
-                String correctedPath = imagePath.replace("file:/", "");
-                Path sourcePath = Paths.get(correctedPath);
-                Path destinationDir = Paths.get(IMAGE_DIR);
-                if (!Files.exists(destinationDir)) {
-                    Files.createDirectories(destinationDir);
-                }
-                Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
-                Files.copy(sourcePath, destinationPath);
-                this.courseImagePath = destinationDir.relativize(destinationPath).toString();
-                this.image = new Image(destinationPath.toUri().toString());
-            } catch (IOException e) {
-                System.err.println("An error occurred while copying the image: " + e.getMessage());
-            }
+    void setImagePath(String imagePath) {
+        if (imagePath == null || imagePath.isEmpty()) {
+            return;
         }
-    
+
+        try {
+            if (!imagePath.startsWith("file:/")) {
+                throw new IllegalArgumentException("Invalid image path format.");
+            }
+            String correctedPath = imagePath.replace("file:/", "");
+
+            Path sourcePath = Paths.get(correctedPath);
+            if (!Files.exists(sourcePath)) {
+                throw new FileNotFoundException("Source image file not found.");
+            }
+
+            Path destinationDir = Paths.get(IMAGE_DIR);
+            if (!Files.exists(destinationDir)) {
+                Files.createDirectories(destinationDir);
+            }
+
+            Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+            int counter = 1;
+            while (Files.exists(destinationPath)) {
+                String fileName = sourcePath.getFileName().toString();
+                String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                String fileNameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
+                destinationPath = destinationDir
+                        .resolve(fileNameWithoutExtension + "_" + counter + "." + fileExtension);
+                counter++;
+            }
+
+            Files.copy(sourcePath, destinationPath);
+            this.courseImagePath = destinationDir.relativize(destinationPath).toString();
+            this.image = new Image(destinationPath.toUri().toString());
+
+        } catch (IOException e) {
+            System.err.println("An error occurred while copying the image: " + e.getMessage());
+        }
+
     }
-    
+    // private void setImagePath(String imagePath) {
+
+    // if (imagePath != null && !imagePath.isEmpty()) {
+    // try {
+    // // Remove "file:/" prefix from the URL
+    // String correctedPath = imagePath.replace("file:/", "");
+    // Path sourcePath = Paths.get(correctedPath);
+    // Path destinationDir = Paths.get(IMAGE_DIR);
+    // if (!Files.exists(destinationDir)) {
+    // Files.createDirectories(destinationDir);
+    // }
+    // Path destinationPath = destinationDir.resolve(sourcePath.getFileName());
+    // Files.copy(sourcePath, destinationPath);
+    // this.courseImagePath = destinationDir.relativize(destinationPath).toString();
+    // this.image = new Image(destinationPath.toUri().toString());
+    // } catch (IOException e) {
+    // System.err.println("An error occurred while copying the image: " +
+    // e.getMessage());
+    // }
+    // }
+
+    // }
 
     private void intialCourseId() {
         String idstr = courseName.substring(0, 2) + "@" + countId;
@@ -108,7 +148,6 @@ public class Course {
         return materials;
     }
 
-
     // Methods
     public void registerUser(User user) {
         if (!registeredUserIds.contains(user.getId())) {
@@ -121,7 +160,6 @@ public class Course {
             registeredUserIds.remove(user.getId());
         }
     }
-    
 
     public double countUserProgress(User user) {
         // Implement logic to count user's progress based on completed quizzes and
@@ -144,8 +182,6 @@ public class Course {
     public void setMaterials(List<Material> materials) {
         this.materials = materials;
     }
-
-
 
     public String getCourseId() {
         return courseId;
@@ -171,9 +207,6 @@ public class Course {
         this.courseId = courseId;
     }
 
-
-
-
     public Image getImage() {
         if (image == null && courseImagePath != null) {
             Path imagePath = Paths.get(IMAGE_DIR).resolve(this.courseImagePath).toAbsolutePath();
@@ -186,41 +219,35 @@ public class Course {
         return courseImagePath;
     }
 
-
     public String getInstructorId() {
         return instructorId;
     }
-
 
     public void setInstructorId(String instructorId) {
         this.instructorId = instructorId;
     }
 
-
     public List<String> getRegisteredUserIds() {
         return registeredUserIds;
     }
-
 
     public void setRegisteredUserIds(List<String> registeredUserIds) {
         this.registeredUserIds = registeredUserIds;
     }
 
-
     public void setImage(Image image) {
         this.image = image;
     }
 
-
     @Override
     public String toString() {
-        return "Course{" + 
-        "courseId='" + courseId + '\'' +
-        ", courseName='" + courseName + '\'' +
-        ", courseImagePath='" + courseImagePath + '\'' +
-        ", instructorId='" + instructorId + '\'' +
-        ", registeredUserIds=" + registeredUserIds +
-        "} " ;
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", courseImagePath='" + courseImagePath + '\'' +
+                ", instructorId='" + instructorId + '\'' +
+                ", registeredUserIds=" + registeredUserIds +
+                "} ";
 
     }
 }

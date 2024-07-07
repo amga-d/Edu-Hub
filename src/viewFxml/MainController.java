@@ -200,8 +200,7 @@ public class MainController implements Initializable {
 
         homeButton.setOnMouseClicked(e -> {
 
-            Pane clickedBox = (Pane) e.getSource();
-            handleBoxClick(clickedBox);
+            handleBoxClick();
             homeImage.setVisible(true);
             homeButton.getChildren().get(0).getStyleClass().add("selected");
 
@@ -212,9 +211,7 @@ public class MainController implements Initializable {
         });
 
         courseButton.setOnMouseClicked(e -> {
-
-            Pane clickedBox = (Pane) e.getSource();
-            handleBoxClick(clickedBox);
+            handleBoxClick();
             coursImage.setVisible(true);
             courseButton.getChildren().get(0).getStyleClass().add("selected");
 
@@ -225,8 +222,7 @@ public class MainController implements Initializable {
         });
 
         forumButton.setOnMouseClicked(e -> {
-            Pane clickedBox = (Pane) e.getSource();
-            handleBoxClick(clickedBox);
+            handleBoxClick();
             forumImage.setVisible(true);
             forumButton.getChildren().get(0).getStyleClass().add("selected");
             openPage("FourmLayout.fxml",true).getController();
@@ -235,23 +231,20 @@ public class MainController implements Initializable {
 
 
         profileButton.setOnMouseClicked(e -> {
-            Pane clickedBox = (Pane) e.getSource();
-            handleBoxClick(clickedBox);
+            handleBoxClick();
             profileImage.setVisible(true);
             profileButton.getChildren().get(0).getStyleClass().add("selected");
         });
 
         contactButton.setOnMouseClicked(e -> {
-            Pane clickedBox = (Pane) e.getSource();
-            handleBoxClick(clickedBox);
+            handleBoxClick();
             chatImage.setVisible(true);
             contactButton.getChildren().get(0).getStyleClass().add("selected");
 
         });
 
         contactUsPane.setOnMouseClicked(e ->{
-            Pane clickedBox = (Pane) e.getSource();
-            handleBoxClick(clickedBox);
+            handleBoxClick();
             contactUsState2Icon.setVisible(true);
             contactUsPane.getChildren().get(0).getStyleClass().add("selected");
 
@@ -302,8 +295,8 @@ public class MainController implements Initializable {
             }
         }
     }
-    @FXML
-    public void handleBoxClick(Pane clickedBox) {
+    
+    public void handleBoxClick() {
 
         courseButton.getChildren().get(0).getStyleClass().remove("selected");
         homeButton.getChildren().get(0).getStyleClass().remove("selected");
