@@ -1,15 +1,23 @@
 package model;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Quiz {
     private String title;
-    private String description;
-    private int maxScore;
+    private String question;
+    private String[] choices;
+    private int rightAnswer;
+    private Map <String, Boolean> completionStatus;
 
     // Constructor
-    public Quiz(String title, String description, int maxScore) {
+    public Quiz(String title, String question,String[] choices, int rightAnswer) {
         this.title = title;
-        this.description = description;
-        this.maxScore = maxScore;
+        this.question = question;
+        this.choices =choices;
+        this.rightAnswer = rightAnswer;
+        this.completionStatus = new HashMap<>();
     }
 
     // Getters and Setters
@@ -17,29 +25,49 @@ public class Quiz {
         return title;
     }
 
-    public boolean isCompletedByUser(User user) {
-        // Check if the user has completed this quiz
-        // Return true if completed, false otherwise
-        return false;
-    }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+
+
+    public void setCompleted(User user) {
+        completionStatus.put(user.getId(), true);
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public boolean isCompleted(User user) {
+        return completionStatus.getOrDefault(user.getId(), false);
     }
 
-    public int getMaxScore() {
-        return maxScore;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setMaxScore(int maxScore) {
-        this.maxScore = maxScore;
+    public void setQuestion(String question) {
+        this.question = question;
     }
+
+    public String[] getChoices() {
+        return choices;
+    }
+
+
+    public boolean isRightAnswer(int answer) {
+        return rightAnswer == answer;
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz [title=" + title + ", question=" + question + ", choices=" + Arrays.toString(choices)
+                + ", rightAnswer=" + rightAnswer + ", completionStatus=" + completionStatus + "]";
+    }
+
+
+
+
+
+
+
+    
 }

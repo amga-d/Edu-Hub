@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Course;
 import model.User;
+import service.CourseService;
 
 public class MyLearningController implements Initializable {
 
@@ -45,6 +46,8 @@ public class MyLearningController implements Initializable {
     private List<Course> completedCourses;
     private List<Course> inProgressCourses;
     private User user;
+
+    private CourseService courseService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +88,7 @@ public class MyLearningController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MyCourseLayout.fxml"));
                     HBox root = loader.load();
                     MyCourseLayoutController controller = loader.getController();
-                    controller.updateContent(courses.get(i),user);
+                    controller.updateContent(courses.get(i),user,courseService);
                     container.getChildren().add(root);
                 }
             } catch (IOException e) {
@@ -100,8 +103,9 @@ public class MyLearningController implements Initializable {
 
     }
 
-    public void initialMyLearningPage(List<Course> mycourses, User user) {
+    public void initialMyLearningPage(List<Course> mycourses, User user, CourseService courseService) {
         this.user = user;
+        this.courseService = courseService;
         if (mycourses != null) {
             for (Course course : mycourses) {
                 if (course.isCourseCompleteByUser(user)) {
@@ -113,14 +117,6 @@ public class MyLearningController implements Initializable {
         }
         displayMyCourse(inProgressCourseContainer, inProgressCourses);
         displayMyCourse(completedCourseContainer, completedCourses);
-        // Pane pane = new Pane();
-        // VBox vbox = new VBox();
-        // VBox box1 = new VBox();
-        // VBox vbox2 = new VBox();
-        // inProgressCourseContainer.getChildren().add(pane );
-        // inProgressCourseContainer.getChildren().add(vbox);
-        // inProgressCourseContainer.getChildren().add(box1 );
-        // inProgressCourseContainer.getChildren().add(vbox2 );
     }
     
 

@@ -3,6 +3,8 @@ package service;
 import model.Course;
 import model.Account;
 import model.Instructor;
+import model.Material;
+import model.Quiz;
 import model.User;
 import model.CourseModel;
 import model.AccountModel;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class CourseServiceImpl implements CourseService {
 
-    private List<Course> courses;
+    private static List<Course> courses;
     private List<Account> accounts;
 
     private CourseModel courseModel;
@@ -28,9 +30,10 @@ public class CourseServiceImpl implements CourseService {
         updateCountId();
     }
 
-    public AccountService getAccountService(){
+    public AccountService getAccountService() {
         return this.accountService;
     }
+
     private void saveCourses() {
         courseModel.saveCourses(courses);
     }
@@ -42,6 +45,28 @@ public class CourseServiceImpl implements CourseService {
             int id = Integer.parseInt(idstr.substring(indx + 1));
             Course.setCountId(id);
         }
+    }
+
+    @Override
+    public void updateQuizCompletion(User user, Quiz quiz) {
+        quiz.setCompleted(user);
+        saveCourses();
+    }
+
+    @Override
+    public void updateMaterialCompletion(User user, Material material) {
+        material.setCompleted(user);
+        saveCourses();
+    }
+
+    @Override
+    public boolean isQuizCompleted(User user, Quiz quiz) {
+        return quiz.isCompleted(user);
+    }
+
+    @Override
+    public boolean isMaterialCompleted(User user, Material material) {
+        return material.isCompleted(user);
     }
 
     @Override
@@ -120,7 +145,7 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getRandomCourses(int num) {
         List<Course> shuffledList = new ArrayList<>(courses);
         Collections.shuffle(shuffledList);
-        if(courses.size() == 0||num <= 0){
+        if (courses.size() == 0 || num <= 0) {
             return null;
         }
         if (num > courses.size()) {
@@ -155,8 +180,37 @@ public class CourseServiceImpl implements CourseService {
 
     }
 
-    
+    @Override
+    public void deletUserCourses(User user) {
+        List<Course> coursesByUser = getCoursesByUser(user);
+        if (!coursesByUser.isEmpty()) {
+            for (Course course : coursesByUser) {
+                course.unregisterUser(user);
+            }
+            saveCourses();
+        }
+    }
+
+    @Override
+    public void createMaterial(Course course, String title, String content) {
+        course.addMaterial(new Material(title, content));
+        saveCourses();
+    }
+
+    @Override
+    public void createQuiz(Course course, String title, String question, String[] choices, int rightAnswerIndx) {
+        course.addQuiz(new Quiz(title, question, choices, rightAnswerIndx));
+        saveCourses();
+    }
+
+    @Override
+    public void deleteMaterial(Course course, Material material) {
+        course.removeMaterials();
+        saveCourses();
+    }
+
 }
+
 // @Override
 // public List<Account> getUsersRegisterdToCourse(Course course) {
 // List<String> userIds = course.getRegisteredUserIds();

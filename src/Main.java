@@ -25,7 +25,7 @@ public class Main extends Application {
         loginController logincontroller = loader.getController();
         logincontroller.setAccountService(accountService);
         logincontroller.load();
-
+        
         root.setClip(createRoundedRectangle(900, 600, 30));
 
         Scene scene = new Scene(root);
@@ -46,5 +46,17 @@ public class Main extends Application {
         rectangle.setArcHeight(radius);
         return rectangle;
     }
+
+
+    /*
+    TODO :
+    1. the profile page for user which has there menu
+        a. (Achievement) which has the completed courses pane
+        b. edit information 
+        c. delete Account
+    2. edit course Information by Insturctor 
+    3. create the Admin interface with all needed pages
+    3. Delete the chat Feature
+    */
 
 }

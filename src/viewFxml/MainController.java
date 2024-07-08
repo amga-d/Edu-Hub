@@ -47,9 +47,6 @@ public class MainController implements Initializable {
     private ImageView chatImage;
 
     @FXML
-    private Pane contactButton;
-
-    @FXML
     private ImageView coursImage;
 
     @FXML
@@ -203,15 +200,32 @@ public class MainController implements Initializable {
     private Pane mentor3;
     @FXML
     private Pane mentor4;
-
+    @FXML
+    private Label course1;
+    @FXML
+    private Label course2;
+    @FXML
+    private Label course3;
 
     private User user;
     private CourseService courseService;
     private Node rightSide;
 
+    private CircularProgressBar circularProgressBar;
+    private CircularProgressBar circularProgressBar2;
+    private CircularProgressBar circularProgressBar3;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        circularProgressBar = new CircularProgressBar();
+        circularProgressBar.addToPane(learningProcessPane);
+    
+        circularProgressBar2 = new CircularProgressBar();
+        circularProgressBar2.addToPane(learningProcessPane2);
+    
+        circularProgressBar3 = new CircularProgressBar();
+        circularProgressBar3.addToPane(learningProcessPane3);
         rightSide = borderPane.getRight();
 
         homeButton.setOnMouseClicked(e -> {
@@ -224,7 +238,6 @@ public class MainController implements Initializable {
             homeController1.setCourseService(courseService);
             homeController1.setAccount(user);
             homeController1.intiialHomePage();
-
         });
 
         courseButton.setOnMouseClicked(e -> {
@@ -253,13 +266,6 @@ public class MainController implements Initializable {
             profileButton.getChildren().get(0).getStyleClass().add("selected");
         });
 
-        contactButton.setOnMouseClicked(e -> {
-            handleBoxClick();
-            chatImage.setVisible(true);
-            contactButton.getChildren().get(0).getStyleClass().add("selected");
-
-        });
-
         contactUsPane.setOnMouseClicked(e -> {
             handleBoxClick();
             contactUsState2Icon.setVisible(true);
@@ -271,13 +277,13 @@ public class MainController implements Initializable {
             handleSignOut();
         });
 
-        myLearningButton.setOnMouseClicked(e->{
+        myLearningButton.setOnMouseClicked(e -> {
             handleBoxClick();
             myLearningImage.setVisible(true);
             myLearningButton.getChildren().get(0).getStyleClass().add("selected");
             MyLearningController controller = openPage("MyLearingLayout.fxml", false).getController();
             List<Course> mycourses = courseService.getCoursesByUser(user);
-            controller.initialMyLearningPage(mycourses, user);
+            controller.initialMyLearningPage(mycourses, user, courseService);
         });
 
         notificationButton.setOnMouseClicked(e -> {
@@ -296,53 +302,74 @@ public class MainController implements Initializable {
     }
 
     private void setMontors() {
-       List<Instructor> instructors =courseService.getAccountService().geInstructors();
-       
-       setMentorInformation(instructors.get(0), mentor1);
-       setMentorInformation(instructors.get(1), mentor2);
-       setMentorInformation(instructors.get(2), mentor3);
-       setMentorInformation(instructors.get(3), mentor4);
-       for(int i = 0; i<3;i++){
-           Instructor instructor = instructors.get(i);
-        
-       }
-    }
+        List<Instructor> instructors = courseService.getAccountService().geInstructors();
 
+        setMentorInformation(instructors.get(0), mentor1);
+        setMentorInformation(instructors.get(1), mentor2);
+        setMentorInformation(instructors.get(2), mentor3);
+        setMentorInformation(instructors.get(3), mentor4);
+        for (int i = 0; i < 3; i++) {
+            Instructor instructor = instructors.get(i);
+
+        }
+    }
 
     private void setMentorInformation(Instructor instructor, Pane mentorPane) {
-        ((ImageView)mentorPane.getChildren().get(0)).setImage(instructor.getImage());
-        ((Label)mentorPane.getChildren().get(1)).setText(instructor.getName());
-        ((Label)mentorPane.getChildren().get(2)).setText(instructor.getSpecializatoin());
+        ((ImageView) mentorPane.getChildren().get(0)).setImage(instructor.getImage());
+        ((Label) mentorPane.getChildren().get(1)).setText(instructor.getName());
+        ((Label) mentorPane.getChildren().get(2)).setText(instructor.getSpecializatoin());
 
     }
 
-    private void setProgress(){
+    private void setProgress() {
         List<Course> courses = courseService.getCoursesByUser(user);
-        double progress1 = 0;
-        double progress2 = 0;
-        double progress3 = 0;
-        
+    double progress1 = 0;
+    double progress2 = 0;
+    double progress3 = 0;
 
-        if (!courses.isEmpty()) {
-            progress1 =courses.get(0).countUserProgress(user);
-            if (courses.size() >1 ) {
-                progress2 = courses.get(2).countUserProgress(user);
-                if (courses.size()>2) {
-                    progress3 =courses.get(3).countUserProgress(user);
-                }
+    if (!courses.isEmpty()) {
+        progress1 = courses.get(0).calculateProgress(user);
+        course1.setText(courses.get(0).getCourseName());
+        if (courses.size() > 1) {
+            progress2 = courses.get(1).calculateProgress(user);
+            course2.setText(courses.get(1).getCourseName());
+            if (courses.size() > 2) {
+                progress3 = courses.get(2).calculateProgress(user);
+                course3.setText(courses.get(2).getCourseName());
             }
         }
-        CircularProgressBar circularProgressBar = new CircularProgressBar();
-        circularProgressBar.addToPane(learningProcessPane);
-        circularProgressBar.animateProgress(progress1); 
+    }
+    circularProgressBar.animateProgress(progress1);
+    circularProgressBar2.animateProgress(progress2);
+    circularProgressBar3.animateProgress(progress3);
+        // List<Course> courses = courseService.getCoursesByUser(user);
+        // double progress1 = 0;
+        // double progress2 = 0;
+        // double progress3 = 0;
 
-        CircularProgressBar circularProgressBar2 = new CircularProgressBar();
-        circularProgressBar2.addToPane(learningProcessPane2);
-        circularProgressBar2.animateProgress(progress2); 
+        // if (!courses.isEmpty()) {
+        //     progress1 = courses.get(0).calculateProgress(user);
+        //     course1.setText(courses.get(0).getCourseName());
+        //     if (courses.size() > 1) {
+        //         progress2 = courses.get(1).calculateProgress(user);
+        //         course2.setText(courses.get(1).getCourseName());
+        //         if (courses.size() > 2) {
+        //             progress3 = courses.get(2).calculateProgress(user);
+        //             course3.setText(courses.get(2).getCourseName());
+        //         }
+        //     }
+        // }
+        // CircularProgressBar circularProgressBar = new CircularProgressBar();
+        // circularProgressBar.addToPane(learningProcessPane);
+        // circularProgressBar.animateProgress(progress1);
 
-        CircularProgressBar circularProgressBar3 = new CircularProgressBar();
-        circularProgressBar3.addToPane(learningProcessPane3);
-        circularProgressBar3.animateProgress(progress3); 
+        // CircularProgressBar circularProgressBar2 = new CircularProgressBar();
+        // circularProgressBar2.addToPane(learningProcessPane2);
+        // circularProgressBar2.animateProgress(progress2);
+
+        // CircularProgressBar circularProgressBar3 = new CircularProgressBar();
+        // circularProgressBar3.addToPane(learningProcessPane3);
+        // circularProgressBar3.animateProgress(progress3);
 
     }
 
@@ -363,13 +390,12 @@ public class MainController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
 
-
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setTitle("edu-Hub");
             stage.getIcons().add(icon);
-            
+
             ((Stage) signOutPane.getScene().getWindow()).close();
-            
+
             stage.show();
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -377,7 +403,6 @@ public class MainController implements Initializable {
         }
 
     }
-
 
     private javafx.scene.shape.Rectangle createRoundedRectangle(double width, double height, double radius) {
         javafx.scene.shape.Rectangle rectangle = new javafx.scene.shape.Rectangle(width, height);
@@ -388,7 +413,6 @@ public class MainController implements Initializable {
 
     private void setCalender() {
 
-   
         LocalDate currentDate = LocalDate.now();
         int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
 
@@ -423,18 +447,15 @@ public class MainController implements Initializable {
         homeButton.getChildren().get(0).getStyleClass().remove("selected");
         forumButton.getChildren().get(0).getStyleClass().remove("selected");
         profileButton.getChildren().get(0).getStyleClass().remove("selected");
-        contactButton.getChildren().get(0).getStyleClass().remove("selected");
         contactUsPane.getChildren().get(0).getStyleClass().remove("selected");
         myLearningButton.getChildren().get(0).getStyleClass().remove("selected");
 
         coursImage.setVisible(false);
         homeImage.setVisible(false);
-        chatImage.setVisible(false);
         profileImage.setVisible(false);
         forumImage.setVisible(false);
         myLearningImage.setVisible(false);
         contactUsState2Icon.setVisible(false);
-        
 
     }
 
@@ -458,6 +479,7 @@ public class MainController implements Initializable {
                 borderPane.setRight(rightSide);
             }
             borderPane.setCenter(root);
+            setProgress();
             return loader; // return the loader to be to get the controller class
         } catch (IOException e) {
             e.printStackTrace();
@@ -474,21 +496,17 @@ public class MainController implements Initializable {
         homeController.setAccount(user);
         homeController.intiialHomePage();
 
-
         setMontors();
         setProgress();
         setCalender();
     }
 
     public void setAccount(Account account, AccountService accountService) {
-        this.user = (User)account;
+        this.user = (User) account;
         username.setText(user.getName());
         this.courseService = new CourseServiceImpl(accountService);
         setProfile(user.getImage());
         initialMain();
     }
-
-
- 
 
 }
