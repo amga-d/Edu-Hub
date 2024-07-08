@@ -1,10 +1,16 @@
 package service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.io.path.Path;
+
 import model.Account;
 import model.AccountModel;
+import model.Course;
 import model.Instructor;
 import model.User;
 
@@ -96,8 +102,8 @@ public class AccountServiceImpl implements AccountService {
     // }
     
 
-    @Override
-    public void deleteAccount(Account account) {
+    
+    private void deleteAccount(Account account) {
         if (account instanceof User) {
             accountList.remove(account);
             saveAccounts();
@@ -105,6 +111,18 @@ public class AccountServiceImpl implements AccountService {
     // // Remove the account from the list based on username
     // accountList.removeIf(account -> account.getEmail().equals(username));
     // // Optionally, perform additional logic such as deleting from a database
+    }
+    @Override
+     public void deleteUserAccount(User user) {
+
+
+        // Remove the user from the registered courses
+        CourseService courseService = new CourseServiceImpl(this);
+        courseService.deletUserCourses(user);
+       
+
+        // Remove the user from the database or storage
+        deleteAccount(user);
     }
 
     @Override

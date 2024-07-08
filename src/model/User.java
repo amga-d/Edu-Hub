@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javafx.scene.image.Image;
 
@@ -75,10 +76,7 @@ public class User extends Account {
         }
     }
 
-    public double getCourseProgress(Course course) {
-        // TODO_Implement logic to get progress for a specific course
-        return 0.0;
-    }
+
 
     public List<String> getRegisteredCoursesId() {
         return registeredCoursesId;
@@ -90,7 +88,7 @@ public class User extends Account {
     
     @Override
     public String toString() {
-        return "Student{" + "id=" + super.getId() + ", name=" + super.getId() + ", gender"
+        return "Student{" + "id=" + super.getId() + ", name=" + super.getName() + ", gender"
         + gender + ", date=" + date + ", age=" + age + ", registeredCoursesId"
         + registeredCoursesId + '}';
     }

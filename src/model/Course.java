@@ -20,6 +20,7 @@ public class Course {
     private List<Quiz> quizzes;
     private List<Material> materials;
     private String courseId;
+
     private String courseImagePath;
     private String instructorId;
     private List<String> registeredUserIds;
@@ -87,44 +88,43 @@ public class Course {
 
     }
 
-    public double countUserProgress(User user) {
-        if (!quizzes.isEmpty() && !materials.isEmpty() ) {
-            int totalQuizzes = quizzes.size();
-            int totalMaterials = materials.size();
-            int completedQuizzes = 0;
-            int completedMaterials = 0;
-        
-            // Count completed quizzes
-            for (Quiz quiz : quizzes) {
-                if (quiz.isCompletedByUser(user)) {
-                    completedQuizzes++;
-                }
+    public void removeMaterials(){
+        materials = new ArrayList<>();
+    }
+    public double calculateProgress(User user) {
+        int totalQuizzes = quizzes.size();
+        int totalMaterials = materials.size();
+        int completedQuizzes = 0;
+        int completedMaterials = 0;
+    
+        // Count completed quizzes
+        for (Quiz quiz : quizzes) {
+            if (quiz.isCompleted(user)) {
+                completedQuizzes++;
             }
-        
-            // Count completed materials
-            for (Material material : materials) {
-                if (material.isCompletedByUser(user)) {
-                    completedMaterials++;
-                }
+        }
+    
+        // Count completed materials
+        for (Material material : materials) {
+            if (material.isCompleted(user)) {
+                completedMaterials++;
             }
-        
-            // Calculate progress as a percentage
-            double progress = (completedQuizzes / (double) totalQuizzes) * 0.5 + (completedMaterials / (double) totalMaterials) * 0.5;
-        
-            return progress;
         }
-        else{
-            return 0.5;
+    
+        // Calculate progress as a percentage
+        double progress = 0.0;
+        if (totalQuizzes > 0 || totalMaterials > 0) {
+            progress = (completedQuizzes / (double) totalQuizzes) * 0.5 + (completedMaterials / (double) totalMaterials) * 0.5;
         }
-
+    
+        return progress;
     }
 
-    public Boolean isCourseCompleteByUser(User user){
-        //TODO: conunt user progress 
-        if (quizzes.size() != 0 && materials.size() != 0) {
-            return false;
-        }
-        return false;
+    
+
+    public boolean isCourseCompleteByUser(User user) {
+        double progress = calculateProgress(user);
+        return progress == 1.0;
     }
     // private void setImagePath(String imagePath) {
 
@@ -282,7 +282,10 @@ public class Course {
                 ", courseImagePath='" + courseImagePath + '\'' +
                 ", instructorId='" + instructorId + '\'' +
                 ", registeredUserIds=" + registeredUserIds +
+                ", tag='" + tag + '\'' +
+                ", Quiz"+quizzes+
                 "} ";
 
     }
+    
 }
