@@ -29,7 +29,7 @@
          <children>
             <ScrollPane fx:id="inProgressPane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: green; -fx-region-background: green;" styleClass="custom-scroll-pane" vbarPolicy="NEVER">
                <content>
-                  <VBox fx:id="inProgressCourseContainer" prefWidth="900.0" spacing="20.0" />
+                  <VBox fx:id="inProgressCourseContainer" alignment="CENTER" prefWidth="900.0" spacing="20.0" />
                </content>
             </ScrollPane>
             <ScrollPane fx:id="completePane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: white; -fx-region-background: white;" styleClass="custom-scroll-pane" vbarPolicy="NEVER" visible="false">

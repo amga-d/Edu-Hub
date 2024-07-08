@@ -35,12 +35,14 @@ public class CourseLayoutController implements Initializable {
     @FXML
     private Label tag;
 
+
+
     private Pane enrollPane;
     private Course course;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        
     }
 
     public void setCourseInfo(Course course, Pane enrollPane,User user) {
@@ -53,6 +55,8 @@ public class CourseLayoutController implements Initializable {
         setCourse(course);
         handleOpenCourse(user);
     }
+
+
 
     public void handleOpenCourse(User user) {
         opencourse.setOnMouseClicked(e -> {

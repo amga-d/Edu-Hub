@@ -114,7 +114,7 @@ public class Course {
             return progress;
         }
         else{
-            return 0;
+            return 0.5;
         }
 
     }

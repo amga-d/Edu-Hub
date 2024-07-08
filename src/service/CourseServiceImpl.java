@@ -154,6 +154,8 @@ public class CourseServiceImpl implements CourseService {
         return categorizedCourses;
 
     }
+
+    
 }
 // @Override
 // public List<Account> getUsersRegisterdToCourse(Course course) {

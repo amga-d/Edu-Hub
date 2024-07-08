@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Account;
 import model.AccountModel;
+import model.Instructor;
 import model.User;
 
 public class AccountServiceImpl implements AccountService {
@@ -115,4 +116,16 @@ public class AccountServiceImpl implements AccountService {
         Account account = getAccountByEmail(email);
         return account != null && account.getPassword().equals(password);
     }
+
+    @Override
+    public List<Instructor> geInstructors() {
+        List<Instructor> instructors = new ArrayList<Instructor>();
+        for (Account account : accountList) {
+            if (account instanceof Instructor) {
+                instructors.add((Instructor) account);
+                }
+        }
+        return instructors;
+    }
+    
 }

@@ -2,6 +2,7 @@ package viewFxml;
 
 import model.Account;
 import model.Course;
+import model.Instructor;
 import model.User;
 import service.AccountService;
 import service.CourseService;
@@ -194,6 +195,14 @@ public class MainController implements Initializable {
     private Pane learningProcessPane2;
     @FXML
     private Pane learningProcessPane3;
+    @FXML
+    private Pane mentor1;
+    @FXML
+    private Pane mentor2;
+    @FXML
+    private Pane mentor3;
+    @FXML
+    private Pane mentor4;
 
 
     private User user;
@@ -203,21 +212,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // initialize the courseService
-        setCalender();
         rightSide = borderPane.getRight();
-
-        CircularProgressBar circularProgressBar = new CircularProgressBar();
-        circularProgressBar.addToPane(learningProcessPane);
-        circularProgressBar.animateProgress(0.7); 
-
-        CircularProgressBar circularProgressBar2 = new CircularProgressBar();
-        circularProgressBar2.addToPane(learningProcessPane2);
-        circularProgressBar2.animateProgress(0.59); 
-
-        CircularProgressBar circularProgressBar3 = new CircularProgressBar();
-        circularProgressBar3.addToPane(learningProcessPane3);
-        circularProgressBar3.animateProgress(0.91); 
 
         homeButton.setOnMouseClicked(e -> {
 
@@ -297,6 +292,57 @@ public class MainController implements Initializable {
         notificationPane.setOnMouseExited(e -> {
             notificationPane.setVisible(false);
         });
+
+    }
+
+    private void setMontors() {
+       List<Instructor> instructors =courseService.getAccountService().geInstructors();
+       
+       setMentorInformation(instructors.get(0), mentor1);
+       setMentorInformation(instructors.get(1), mentor2);
+       setMentorInformation(instructors.get(2), mentor3);
+       setMentorInformation(instructors.get(3), mentor4);
+       for(int i = 0; i<3;i++){
+           Instructor instructor = instructors.get(i);
+        
+       }
+    }
+
+
+    private void setMentorInformation(Instructor instructor, Pane mentorPane) {
+        ((ImageView)mentorPane.getChildren().get(0)).setImage(instructor.getImage());
+        ((Label)mentorPane.getChildren().get(1)).setText(instructor.getName());
+        ((Label)mentorPane.getChildren().get(2)).setText(instructor.getSpecializatoin());
+
+    }
+
+    private void setProgress(){
+        List<Course> courses = courseService.getCoursesByUser(user);
+        double progress1 = 0;
+        double progress2 = 0;
+        double progress3 = 0;
+        
+
+        if (!courses.isEmpty()) {
+            progress1 =courses.get(0).countUserProgress(user);
+            if (courses.size() >1 ) {
+                progress2 = courses.get(2).countUserProgress(user);
+                if (courses.size()>2) {
+                    progress3 =courses.get(3).countUserProgress(user);
+                }
+            }
+        }
+        CircularProgressBar circularProgressBar = new CircularProgressBar();
+        circularProgressBar.addToPane(learningProcessPane);
+        circularProgressBar.animateProgress(progress1); 
+
+        CircularProgressBar circularProgressBar2 = new CircularProgressBar();
+        circularProgressBar2.addToPane(learningProcessPane2);
+        circularProgressBar2.animateProgress(progress2); 
+
+        CircularProgressBar circularProgressBar3 = new CircularProgressBar();
+        circularProgressBar3.addToPane(learningProcessPane3);
+        circularProgressBar3.animateProgress(progress3); 
 
     }
 
@@ -427,6 +473,11 @@ public class MainController implements Initializable {
         homeController.setCourseService(courseService);
         homeController.setAccount(user);
         homeController.intiialHomePage();
+
+
+        setMontors();
+        setProgress();
+        setCalender();
     }
 
     public void setAccount(Account account, AccountService accountService) {

@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="64.0" prefWidth="1321.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: rgba(0, 0, 0, 0.15);">
          <children>
-            <Label layoutX="28.0" layoutY="22.0" text="Fourm">
+            <Label layoutX="28.0" layoutY="22.0" text="Forum">
                <font>
                   <Font name="Arial Rounded MT Bold" size="27.0" />
                </font>
