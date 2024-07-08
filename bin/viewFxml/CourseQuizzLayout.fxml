@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutY="6.0" prefHeight="30.0" prefWidth="158.0" text="Mathematics" translateX="44.0" translateY="11.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <ProgressBar layoutX="44.0" layoutY="40.0" prefHeight="10.0" prefWidth="437.0" progress="0.0" translateY="40.0">
+         <styleClass>
+            <String fx:value="learning-Progress-bar" />
+            <String fx:value="custom-progress-bar" />
+         </styleClass>
+      </ProgressBar>
+      <ImageView fitHeight="119.0" fitWidth="208.0" layoutX="36.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" translateY="41.0">
+         <image>
+            <Image url="@../Resources/courses_Images/Calculus.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="44.0" layoutY="250.0" prefHeight="30.0" prefWidth="217.0" text="Course Description:" translateY="43.0">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="44.0" layoutY="300.0" prefHeight="300.0" prefWidth="575.0" text=" This introductory course in calculus is designed to provide students with a fundamental understanding of the concepts and techniques of differential and integral calculus. Topics covered include function, limits, differential, and integrals. Students will learn to apply these concepts to solve real-world problems in fields such as physics, engineering, economics, and biology." translateY="70.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="718.0" layoutY="67.0" prefHeight="725.0" prefWidth="613.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="712.0" prefWidth="611.0">
+               <children>
+                  <ImageView fitHeight="713.0" fitWidth="613.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../Resources/quizzes_Images/Quizzes.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</Pane>
