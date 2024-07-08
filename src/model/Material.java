@@ -10,6 +10,12 @@ public class Material {
         this.content = content;
     }
 
+    public boolean isCompletedByUser(User user) {
+        // Check if the user has completed this quiz
+        // Return true if completed, false otherwise
+        return false; 
+    }
+
     // Getters and Setters
     public String getTitle() {
         return title;

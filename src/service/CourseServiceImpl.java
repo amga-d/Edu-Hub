@@ -131,6 +131,19 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<Course> getCoursesByUser(User user) {
+        List<Course> userCourses = new ArrayList<Course>();
+        String userId = user.getId();
+        user.getRegisteredCoursesId();
+        for (Course course : courses) {
+            if (course.getRegisteredUserIds().contains(userId)) {
+                userCourses.add(course);
+            }
+        }
+        return userCourses;
+    }
+
+    @Override
     public List<Course> getCourseByCategory(String category) {
         List<Course> categorizedCourses = new ArrayList<>();
         for (Course course : courses) {

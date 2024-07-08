@@ -2,15 +2,23 @@ package viewFxml;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.Course;
+import model.User;
 
 public class MyLearningController implements Initializable {
 
@@ -33,14 +41,18 @@ public class MyLearningController implements Initializable {
     private VBox completedCourseContainer;
 
 
+
+    private List<Course> completedCourses;
+    private List<Course> inProgressCourses;
+    private User user;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        btnCompleted.getStyleClass().add("inactive");
-        displayMyCourse(inProgressCourseContainer);
-        displayMyCourse(completedCourseContainer);
-        displayMyCourse(completedCourseContainer);
+        completedCourses = new ArrayList<>();
+        inProgressCourses = new ArrayList<>();
 
+        btnCompleted.getStyleClass().add("inactive");
 
         // Toggle button states on click
         btnInProgress.setOnAction(event -> {
@@ -57,21 +69,59 @@ public class MyLearningController implements Initializable {
             inProgressPane.setVisible(false);
 
         });
-        
-
 
     }
 
-    public void displayMyCourse(VBox container){
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("MyCourseLayout.fxml"));
-        try {
-            Parent root = loader.load();
-            container.getChildren().add(root);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    public void numberchildren(ActionEvent e){
+        System.out.println("Number of children: " + inProgressCourseContainer.getChildren().size());
+    }
+
+
+    public void displayMyCourse(VBox container, List<Course> courses) {
+
+        if (courses.size() != 0) {    
+            try {   
+                for (int i = 0; i < courses.size(); i++) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("MyCourseLayout.fxml"));
+                    HBox root = loader.load();
+                    MyCourseLayoutController controller = loader.getController();
+                    controller.updateContent(courses.get(i),user);
+                    container.getChildren().add(root);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        else{
+            Label label = new Label("No courses found");
+            container.getChildren().add(label);
         }
 
-        
     }
+
+    public void initialMyLearningPage(List<Course> mycourses, User user) {
+        this.user = user;
+        if (mycourses != null) {
+            for (Course course : mycourses) {
+                if (course.isCourseCompleteByUser(user)) {
+                    completedCourses.add(course);
+                } else {
+                    inProgressCourses.add(course);
+                }
+            }
+        }
+        displayMyCourse(inProgressCourseContainer, inProgressCourses);
+        displayMyCourse(completedCourseContainer, completedCourses);
+        // Pane pane = new Pane();
+        // VBox vbox = new VBox();
+        // VBox box1 = new VBox();
+        // VBox vbox2 = new VBox();
+        // inProgressCourseContainer.getChildren().add(pane );
+        // inProgressCourseContainer.getChildren().add(vbox);
+        // inProgressCourseContainer.getChildren().add(box1 );
+        // inProgressCourseContainer.getChildren().add(vbox2 );
+    }
+    
+
 }

@@ -78,8 +78,8 @@ public class HomeController implements Initializable {
         }
         List<Course> recommendedCourses = courseService.getRandomCourses(5);
         if (recommendedCourses != null) {
-            for (int i = 0; i < popularCourses.size(); i++) {
-                addCourse(popularCourses.get(i), recommendedForYou);
+            for (int i = 0; i < recommendedCourses.size(); i++) {
+                addCourse(recommendedCourses.get(i), recommendedForYou);
             }
 
         }

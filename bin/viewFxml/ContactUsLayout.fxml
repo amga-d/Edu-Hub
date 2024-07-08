@@ -74,7 +74,7 @@
             </Label>
          </children>
       </Pane>
-      <TextArea layoutX="52.0" layoutY="211.0" prefHeight="388.0" prefWidth="825.0" promptText="Message" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-color: #909090;" text="sdffdsf" wrapText="true">
+      <TextArea layoutX="52.0" layoutY="211.0" prefHeight="388.0" prefWidth="825.0" promptText="Message" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-color: #909090;" wrapText="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>

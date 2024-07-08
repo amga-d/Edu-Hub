@@ -1,6 +1,7 @@
 package viewFxml;
 
 import model.Account;
+import model.Course;
 import model.User;
 import service.AccountService;
 import service.CourseService;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -186,8 +188,15 @@ public class MainController implements Initializable {
     private ImageView myLearningImage;
     @FXML
     private Pane myLearningButton;
+    @FXML
+    private Pane learningProcessPane;
+    @FXML
+    private Pane learningProcessPane2;
+    @FXML
+    private Pane learningProcessPane3;
 
-    private Account account;
+
+    private User user;
     private CourseService courseService;
     private Node rightSide;
 
@@ -198,9 +207,17 @@ public class MainController implements Initializable {
         setCalender();
         rightSide = borderPane.getRight();
 
-        // handleBoxClick(homeButton);
-        homeButton.getChildren().get(0).getStyleClass().add("selected");
-        homeImage.setVisible(true);
+        CircularProgressBar circularProgressBar = new CircularProgressBar();
+        circularProgressBar.addToPane(learningProcessPane);
+        circularProgressBar.animateProgress(0.7); 
+
+        CircularProgressBar circularProgressBar2 = new CircularProgressBar();
+        circularProgressBar2.addToPane(learningProcessPane2);
+        circularProgressBar2.animateProgress(0.59); 
+
+        CircularProgressBar circularProgressBar3 = new CircularProgressBar();
+        circularProgressBar3.addToPane(learningProcessPane3);
+        circularProgressBar3.animateProgress(0.91); 
 
         homeButton.setOnMouseClicked(e -> {
 
@@ -210,7 +227,7 @@ public class MainController implements Initializable {
 
             HomeController homeController1 = openPage("Home.fxml", false).getController();
             homeController1.setCourseService(courseService);
-            homeController1.setAccount(account);
+            homeController1.setAccount(user);
             homeController1.intiialHomePage();
 
         });
@@ -222,7 +239,7 @@ public class MainController implements Initializable {
 
             CoursesContorller couresesContorller = openPage("Courses.fxml", false).getController();
             couresesContorller.setCourseService(courseService);
-            couresesContorller.setAccount(account);
+            couresesContorller.setAccount(user);
             couresesContorller.initialCoursePage();
 
         });
@@ -263,7 +280,9 @@ public class MainController implements Initializable {
             handleBoxClick();
             myLearningImage.setVisible(true);
             myLearningButton.getChildren().get(0).getStyleClass().add("selected");
-            openPage("MyLearingLayout.fxml", false);
+            MyLearningController controller = openPage("MyLearingLayout.fxml", false).getController();
+            List<Course> mycourses = courseService.getCoursesByUser(user);
+            controller.initialMyLearningPage(mycourses, user);
         });
 
         notificationButton.setOnMouseClicked(e -> {
@@ -401,18 +420,24 @@ public class MainController implements Initializable {
     }
 
     public void initialMain() {
+        homeButton.getChildren().get(0).getStyleClass().add("selected");
+        homeImage.setVisible(true);
+
         HomeController homeController = openPage("Home.fxml", false).getController();
         homeController.setCourseService(courseService);
+        homeController.setAccount(user);
         homeController.intiialHomePage();
     }
 
     public void setAccount(Account account, AccountService accountService) {
-        this.account = account;
-        User user = (User) account;
+        this.user = (User)account;
         username.setText(user.getName());
         this.courseService = new CourseServiceImpl(accountService);
         setProfile(user.getImage());
         initialMain();
     }
+
+
+ 
 
 }

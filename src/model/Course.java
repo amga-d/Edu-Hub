@@ -86,6 +86,46 @@ public class Course {
         }
 
     }
+
+    public double countUserProgress(User user) {
+        if (!quizzes.isEmpty() && !materials.isEmpty() ) {
+            int totalQuizzes = quizzes.size();
+            int totalMaterials = materials.size();
+            int completedQuizzes = 0;
+            int completedMaterials = 0;
+        
+            // Count completed quizzes
+            for (Quiz quiz : quizzes) {
+                if (quiz.isCompletedByUser(user)) {
+                    completedQuizzes++;
+                }
+            }
+        
+            // Count completed materials
+            for (Material material : materials) {
+                if (material.isCompletedByUser(user)) {
+                    completedMaterials++;
+                }
+            }
+        
+            // Calculate progress as a percentage
+            double progress = (completedQuizzes / (double) totalQuizzes) * 0.5 + (completedMaterials / (double) totalMaterials) * 0.5;
+        
+            return progress;
+        }
+        else{
+            return 0;
+        }
+
+    }
+
+    public Boolean isCourseCompleteByUser(User user){
+        //TODO: conunt user progress 
+        if (quizzes.size() != 0 && materials.size() != 0) {
+            return false;
+        }
+        return false;
+    }
     // private void setImagePath(String imagePath) {
 
     // if (imagePath != null && !imagePath.isEmpty()) {
@@ -161,11 +201,6 @@ public class Course {
         }
     }
 
-    public double countUserProgress(User user) {
-        // Implement logic to count user's progress based on completed quizzes and
-        // materials
-        return 0.0; // Placeholder return value
-    }
 
     public void addQuiz(Quiz quiz) {
         quizzes.add(quiz);

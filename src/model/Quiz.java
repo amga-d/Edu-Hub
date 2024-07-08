@@ -17,6 +17,12 @@ public class Quiz {
         return title;
     }
 
+    public boolean isCompletedByUser(User user) {
+        // Check if the user has completed this quiz
+        // Return true if completed, false otherwise
+        return false;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }

@@ -14,6 +14,7 @@ public interface CourseService {
     void unregisterUserFromCourse(User user, Course course);
     Course getCourseByName(String courseName);
     List<Course> getCoursesByInstructor(Instructor instructor);
+    List<Course> getCoursesByUser(User user);
     List<Course> getAllCourses();
     List<Course> getRandomCourses(int num);
     List<Course> getCourseByCategory(String category);
