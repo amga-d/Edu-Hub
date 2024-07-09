@@ -138,7 +138,7 @@
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="courseDescriptionLabel" prefHeight="30.0">
+                  <Label fx:id="courseDescriptionLabel" prefHeight="30.0" wrapText="true">
                      <font>
                         <Font name="Poppins Regular" size="16.0" />
                      </font>
