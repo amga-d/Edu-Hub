@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -47,12 +48,6 @@
                   <String fx:value="opacity" />
                </styleClass>
             </Label>
-            <TextField fx:id="passwordField" layoutX="211.0" layoutY="272.0" prefHeight="30.0" prefWidth="285.0">
-               <styleClass>
-                  <String fx:value="text-box" />
-                  <String fx:value="opacity" />
-               </styleClass>
-            </TextField>
             <Label fx:id="role" layoutX="211.0" layoutY="316.0" prefHeight="23.0" prefWidth="283.0" text="What's Your Job?">
                <styleClass>
                   <String fx:value="box-label" />
@@ -93,6 +88,12 @@
                </styleClass>
             </Label>
             <CheckBox fx:id="mentorCheckbox" layoutX="353.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleMentorCheckBox" prefHeight="17.0" prefWidth="17.0" styleClass="opacity" />
+            <PasswordField fx:id="passwordField" layoutX="211.0" layoutY="272.0" prefHeight="30.0" prefWidth="285.0">
+               <styleClass>
+                  <String fx:value="text-box" />
+                  <String fx:value="opacity" />
+               </styleClass>
+            </PasswordField>
          </children>
       </Pane>
    </children>
