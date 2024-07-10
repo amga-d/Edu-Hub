@@ -36,6 +36,9 @@ public class TestingDataModel  {
         
         // Course course = courseService.getCourseByName("Basic Chemistry"); 
         // System.out.println(course);
+
+        // System.out.println(courseService.getCourseByName("biology"));
+        // courseService.getCou
         
     }
 }
