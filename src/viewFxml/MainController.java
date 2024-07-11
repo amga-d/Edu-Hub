@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -209,6 +210,8 @@ public class MainController implements Initializable {
 
     private User user;
     private CourseService courseService;
+    private AccountService accountService;
+
     private Node rightSide;
 
     private CircularProgressBar circularProgressBar;
@@ -261,9 +264,11 @@ public class MainController implements Initializable {
         });
 
         profileButton.setOnMouseClicked(e -> {
-            handleBoxClick();
-            profileImage.setVisible(true);
-            profileButton.getChildren().get(0).getStyleClass().add("selected");
+            handleOpenProfilePage();
+        });
+
+        profile.setOnMouseClicked(e->{
+            handleOpenProfilePage();
         });
 
         contactUsPane.setOnMouseClicked(e -> {
@@ -299,6 +304,24 @@ public class MainController implements Initializable {
             notificationPane.setVisible(false);
         });
 
+    }
+
+    private void handleOpenProfilePage() {
+        handleBoxClick();
+        profileImage.setVisible(true);
+        profileButton.getChildren().get(0).getStyleClass().add("selected");
+        ProfileLayoutController controller= openPage("ProfileLayout.fxml", true).getController();
+
+        List<Course> completeCourses = new ArrayList<>();
+        for (Course course : courseService.getCoursesByUser(user)) {
+            if (course.isCourseCompleteByUser(user)) {
+                completeCourses.add(course);
+            }
+        }
+        
+        controller.initialProfile(user,completeCourses,accountService);
+        controller.setParentController(this);
+        
     }
 
     private void setMontors() {
@@ -373,7 +396,7 @@ public class MainController implements Initializable {
 
     }
 
-    private void handleSignOut() {
+    public void handleSignOut() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         try {
             Parent root = loader.load();
@@ -487,7 +510,19 @@ public class MainController implements Initializable {
         }
     }
 
-    public void initialMain() {
+    public void updateUser(){
+        setProfile(user.getImage());
+        username.setText(user.getName());
+    }
+
+    public void initialMain(User account, AccountService accountService) {
+        this.user =  account;
+        this.accountService = accountService;
+        
+        username.setText(user.getName());
+        this.courseService = new CourseServiceImpl(accountService);
+        setProfile(user.getImage());
+
         homeButton.getChildren().get(0).getStyleClass().add("selected");
         homeImage.setVisible(true);
 
@@ -500,13 +535,4 @@ public class MainController implements Initializable {
         setProgress();
         setCalender();
     }
-
-    public void setAccount(Account account, AccountService accountService) {
-        this.user = (User) account;
-        username.setText(user.getName());
-        this.courseService = new CourseServiceImpl(accountService);
-        setProfile(user.getImage());
-        initialMain();
-    }
-
 }

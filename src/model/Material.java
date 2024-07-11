@@ -48,6 +48,12 @@ public class Material {
     public String toString() {
         return "Material [title=" + title + ", content=" + content + ", completionStatus=" + completionStatus + "]";
     }
+
+
+
+    public void removeUserCompletionStatus(String userId) {
+        completionStatus.remove(userId);
+    }
     
 }
 

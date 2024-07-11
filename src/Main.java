@@ -57,6 +57,8 @@ public class Main extends Application {
     2. edit course Information by Insturctor 
     3. create the Admin interface with all needed pages
     3. Delete the chat Feature
+    4. add the searchbar
+    5.change the structure of of the material and quizzes to be combained on one class called lesson
     */
 
 }

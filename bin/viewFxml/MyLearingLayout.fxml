@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="793.0" prefWidth="970.0" style="-fx-background-color: white;" styleClass="button-container" stylesheets="@style/mylearing.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewFxml.MyLearningController">
+   <children>
+      <Pane prefHeight="64.1" prefWidth="991.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: rgba(0, 0, 0, 0.15);">
+         <children>
+            <Label layoutX="28.0" layoutY="22.0" text="My Learning">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnInProgress" mnemonicParsing="false" prefHeight="26.0" styleClass="button-container" text="In Progress" />
+            <Button fx:id="btnCompleted" mnemonicParsing="false" prefHeight="26.0" styleClass="button-container" text="Completed" />
+         </children>
+      </HBox>
+      <Pane prefHeight="603.0" prefWidth="930.0">
+         <children>
+            <ScrollPane fx:id="inProgressPane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: green; -fx-region-background: green;" styleClass="custom-scroll-pane" vbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="inProgressCourseContainer" alignment="CENTER" prefWidth="900.0" spacing="20.0" />
+               </content>
+            </ScrollPane>
+            <ScrollPane fx:id="completePane" hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="930.0" style="-fx-background-color: white; -fx-region-background: white;" styleClass="custom-scroll-pane" vbarPolicy="NEVER" visible="false">
+               <content>
+                  <VBox fx:id="completedCourseContainer" alignment="CENTER" prefWidth="900.0" spacing="20.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+   </children>
+</VBox>

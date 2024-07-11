@@ -88,39 +88,39 @@ public class Course {
 
     }
 
-    public void removeMaterials(){
+    public void removeMaterials() {
         materials = new ArrayList<>();
     }
+
     public double calculateProgress(User user) {
         int totalQuizzes = quizzes.size();
         int totalMaterials = materials.size();
         int completedQuizzes = 0;
         int completedMaterials = 0;
-    
+
         // Count completed quizzes
         for (Quiz quiz : quizzes) {
             if (quiz.isCompleted(user)) {
                 completedQuizzes++;
             }
         }
-    
+
         // Count completed materials
         for (Material material : materials) {
             if (material.isCompleted(user)) {
                 completedMaterials++;
             }
         }
-    
+
         // Calculate progress as a percentage
         double progress = 0.0;
         if (totalQuizzes > 0 || totalMaterials > 0) {
-            progress = (completedQuizzes / (double) totalQuizzes) * 0.5 + (completedMaterials / (double) totalMaterials) * 0.5;
+            progress = (completedQuizzes / (double) totalQuizzes) * 0.5
+                    + (completedMaterials / (double) totalMaterials) * 0.5;
         }
-    
+
         return progress;
     }
-
-    
 
     public boolean isCourseCompleteByUser(User user) {
         double progress = calculateProgress(user);
@@ -201,7 +201,6 @@ public class Course {
         }
     }
 
-
     public void addQuiz(Quiz quiz) {
         quizzes.add(quiz);
     }
@@ -274,6 +273,24 @@ public class Course {
         this.image = image;
     }
 
+    public void removeUserCompletionStatus(User user) {
+
+        String userId = user.getId();
+
+        if (registeredUserIds.contains(userId)) {
+
+            for (Material material : materials) {
+                material.removeUserCompletionStatus(userId);
+            }
+            for (Quiz quiz : quizzes) {
+                quiz.removeUserCompletionStatus(userId);
+            }
+            unregisterUser(user);
+
+        }
+
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -283,9 +300,9 @@ public class Course {
                 ", instructorId='" + instructorId + '\'' +
                 ", registeredUserIds=" + registeredUserIds +
                 ", tag='" + tag + '\'' +
-                ", Quiz"+quizzes+
+                ", Quiz" + quizzes +
                 "} ";
 
     }
-    
+
 }

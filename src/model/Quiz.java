@@ -63,6 +63,10 @@ public class Quiz {
                 + ", rightAnswer=" + rightAnswer + ", completionStatus=" + completionStatus + "]";
     }
 
+    public void removeUserCompletionStatus(String userId) {
+        completionStatus.remove(userId);
+    }
+
 
 
 

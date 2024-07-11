@@ -185,7 +185,7 @@ public class CourseServiceImpl implements CourseService {
         List<Course> coursesByUser = getCoursesByUser(user);
         if (!coursesByUser.isEmpty()) {
             for (Course course : coursesByUser) {
-                course.unregisterUser(user);
+                course.removeUserCompletionStatus(user);
             }
             saveCourses();
         }

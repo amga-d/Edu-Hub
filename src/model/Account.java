@@ -96,7 +96,7 @@ public abstract class Account {
 
 
     
-    void setImagePath(String imagePath) {
+    public void setImagePath(String imagePath) {
         if (imagePath == null || imagePath.isEmpty()) {
             return;
         }
@@ -169,6 +169,26 @@ public abstract class Account {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+
+    public static String getImageDir() {
+        return IMAGE_DIR;
     }
 
 }

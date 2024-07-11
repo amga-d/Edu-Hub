@@ -96,7 +96,7 @@ public class SignInController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
             root = loader.load();
             MainController mainController = loader.getController();
-            mainController.setAccount(account,accountService);
+            mainController.initialMain((User)account, accountService);
             openStage(root);
 
         } catch (IOException ex) {

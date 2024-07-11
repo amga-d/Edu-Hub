@@ -82,7 +82,7 @@ public class MyLearningController implements Initializable {
 
     public void displayMyCourse(VBox container, List<Course> courses) {
 
-        if (courses.size() != 0) {    
+        if (!courses.isEmpty()) {    
             try {   
                 for (int i = 0; i < courses.size(); i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MyCourseLayout.fxml"));

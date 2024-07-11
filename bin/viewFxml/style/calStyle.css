@@ -1,0 +1,60 @@
+.root {
+    -fx-background-color:   white;
+    -fx-spacing: 10;
+}
+
+.month-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Poppins";
+    -fx-text-fill: #1a1a1a;
+}
+
+.day-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: #1a1a1a;
+    -fx-font-weight: bold;
+    -fx-font-family: "Poppins";
+}
+
+.date-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: #1a1a1a;
+    -fx-font-weight: bold;
+    -fx-font-family:"Poppins";
+}
+
+.selected {
+    -fx-text-fill: #059379;
+}
+
+
+.selected-pane{
+    -fx-background-color: #059379;
+}
+
+.vboxx{
+
+}
+.vboxx:hover{
+    
+}
+.vboxx:hover .day-label {
+    -fx-text-fill: #006C59;
+}
+
+.vboxx:hover .date-label {
+
+    -fx-text-fill: #006C59;
+
+}
+
+
+HBox {
+    -fx-background-color:#F4F4F8;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-alignment: center;
+}
+
+
