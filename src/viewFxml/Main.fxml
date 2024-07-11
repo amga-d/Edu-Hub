@@ -482,7 +482,7 @@
                         <Image url="@../Resources/codicon_account.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="username" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutY="22.0" prefHeight="23.0" prefWidth="180.0" text="Amgad aref" textAlignment="RIGHT">
+                  <Label fx:id="username" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutY="22.0" prefHeight="23.0" prefWidth="180.0" text="{UserName}" textAlignment="RIGHT">
                      <font>
                         <Font name="Poppins SemiBold" size="20.0" />
                      </font>

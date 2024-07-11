@@ -26,11 +26,11 @@ public class Work extends Application {
     public void start(Stage arg0) throws Exception {
 
        AccountService accountService = new AccountServiceImpl();
-        Account account = accountService.getAccountByEmail("amgad@gmail.com");
+        Account account = accountService.getAccountByEmail("aa");
         FXMLLoader loader = new FXMLLoader (getClass().getResource("viewFXML/Main.fxml"));
             Parent mainPage = loader.load();
             MainController mainController = loader.getController();
-            mainController.setAccount(account,accountService);
+            mainController.initialMain((User)account,accountService);
         // Parent rooParent = FXMLLoader.load(getClass().getResource("viewFxml/MentorMenu.fxml"));
         Scene scene = new Scene(mainPage);
         arg0.setScene(scene);

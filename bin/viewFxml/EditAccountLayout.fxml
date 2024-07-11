@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1046.0" stylesheets="@style/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewFxml.EditAccountController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <HBox prefHeight="684.0" prefWidth="1046.0">
+         <children>
+            <Pane prefHeight="684.0" prefWidth="413.0">
+               <children>
+                  <ImageView fx:id="profileImage" fitHeight="250.0" fitWidth="250.0" layoutX="60.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="changeProfileIcon" fitHeight="82.0" fitWidth="48.0" layoutX="247.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/choosePhoto.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="60.0" layoutY="92.0" prefHeight="56.0" prefWidth="518.0" text="Edit Account Information ">
+                     <font>
+                        <Font name="Poppins Regular" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <VBox alignment="BOTTOM_LEFT" fillWidth="false" layoutX="210.0" layoutY="10.0" prefHeight="684.0" prefWidth="486.0" spacing="7.0">
+               <children>
+                  <Label fx:id="name" prefHeight="18.0" prefWidth="282.0" text="Full Name">
+                     <styleClass>
+                        <String fx:value="box-label" />
+                        <String fx:value="opacity" />
+                     </styleClass>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="nameField" prefHeight="30.0" prefWidth="285.0">
+                     <styleClass>
+                        <String fx:value="text-box" />
+                        <String fx:value="opacity" />
+                     </styleClass>
+                  </TextField>
+                  <Label fx:id="email" prefHeight="23.0" prefWidth="283.0" text="Email">
+                     <styleClass>
+                        <String fx:value="box-label" />
+                        <String fx:value="opacity" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="emailField" prefHeight="30.0" prefWidth="285.0">
+                     <styleClass>
+                        <String fx:value="text-box" />
+                        <String fx:value="opacity" />
+                     </styleClass>
+                  </TextField>
+                  <Label fx:id="password1" layoutX="10.0" layoutY="359.0" prefHeight="23.0" prefWidth="283.0" text="New Password">
+                     <styleClass>
+                        <String fx:value="box-label" />
+                        <String fx:value="opacity" />
+                     </styleClass>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <PasswordField fx:id="newpasswordField1" layoutX="10.0" layoutY="389.0" prefHeight="30.0" prefWidth="285.0">
+                     <styleClass>
+                        <String fx:value="text-box" />
+                        <String fx:value="opacity" />
+                     </styleClass>
+                  </PasswordField>
+                  <Label fx:id="birthDate" prefHeight="23.0" prefWidth="91.0" text="Birth Date">
+                     <styleClass>
+                        <String fx:value="box-label" />
+                        <String fx:value="opacity" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <DatePicker fx:id="birthMenu" prefHeight="30.0" prefWidth="135.0" styleClass="opacity" />
+                  <Label fx:id="alertLabel" alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="34.0" prefWidth="486.0" textFill="RED">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="111.0" prefWidth="486.0">
+                     <children>
+                        <Button fx:id="saveButton" layoutX="215.0" mnemonicParsing="false" onAction="#handleEditAccountbutton" prefHeight="37.0" prefWidth="81.0" styleClass="save-button" text="Save" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</Pane>

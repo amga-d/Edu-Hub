@@ -10,6 +10,8 @@ public class TestingDataModel  {
     public static void main(String[] args) {
         AccountService accountService = new AccountServiceImpl();
         CourseService courseService = new CourseServiceImpl(accountService);
+        accountService.deleteUserAccount((User)accountService.getAccountById("Be@16"));
+        System.out.println(courseService.getCourseByName("Basic Chemistry"));
 
         // for (Account account : accountService.getAllAccounts()) {
         //    if (account instanceof User) {

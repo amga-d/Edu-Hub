@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1046.0" style="-fx-background-color: white;" stylesheets="@style/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewFxml.DeleteAccountLayoutController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <Pane layoutX="180.0" layoutY="200.0" prefHeight="316.0" prefWidth="685.0" style="-fx-background-color: F2F2F2; -fx-background-radius: 34;">
+         <children>
+            <Label layoutX="43.0" layoutY="29.0" text="You’re about to delete this account">
+               <font>
+                  <Font name="Poppins Regular" size="33.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="confirm" fitHeight="69.0" fitWidth="66.0" layoutX="463.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/confirmDeletingAccount.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cancel" fitHeight="66.0" fitWidth="81.0" layoutX="568.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/CanceldeletingAccount.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="89.0" prefHeight="127.0" prefWidth="578.0" text="This will delete your information and delete your progress " textAlignment="CENTER" textFill="#00000086" wrapText="true">
+               <font>
+                  <Font name="Poppins Regular" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="64.0" layoutY="83.0" text="Delete Your Account">
+         <font>
+            <Font name="Poppins Regular" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

@@ -19,6 +19,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
 import model.Account;
+import model.User;
 import service.AccountService;
 
 public class FinishSignUpController implements Initializable {
@@ -100,7 +101,7 @@ public class FinishSignUpController implements Initializable {
             FXMLLoader loader = new FXMLLoader (getClass().getResource("Main.fxml"));
             Parent mainPage = loader.load();
             MainController mainController = loader.getController();
-            mainController.setAccount(account,accountService);
+            mainController.initialMain((User)account,accountService);
             Scene scene = new Scene(mainPage);
             Stage stage = new Stage();
             stage.setFullScreen(true);
