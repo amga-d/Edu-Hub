@@ -5,6 +5,31 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
+            "vmArgs": "--module-path C:/Users/amgad/OneDrive/Desktop/javaproject/javafx/demo/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml --add-opens java.base/java.util=ALL-UNNAMED",
+            "projectName": "Edu-Hub_b6381f70"
+        },
+        {
+            "type": "java",
+            "name": "TestingDataModel",
+            "request": "launch",
+            "mainClass": "TestingDataModel",
+            "vmArgs": "--module-path C:/Users/amgad/OneDrive/Desktop/javaproject/javafx/demo/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml --add-opens java.base/java.util=ALL-UNNAMED",
+            "projectName": "Edu-Hub_b6381f70"
+        },
+        {
+            "type": "java",
+            "name": "Work",
+            "request": "launch",
+            "mainClass": "Work",
+            "vmArgs": "--module-path C:/Users/amgad/OneDrive/Desktop/javaproject/javafx/demo/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml --add-opens java.base/java.util=ALL-UNNAMED",
+            "projectName": "Edu-Hub_b6381f70"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "vmArgs": "--module-path C:/Users/amgad/OneDrive/Desktop/javaproject/javafx/demo/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml --add-opens java.base/java.util=ALL-UNNAMED",
             "projectName": "Edu-Hub_3069d802"
         },
         {
@@ -12,7 +37,6 @@
             "name": "TestingDataModel",
             "request": "launch",
             "vmArgs": "--module-path C:/Users/amgad/OneDrive/Desktop/javaproject/javafx/demo/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml --add-opens java.base/java.util=ALL-UNNAMED",
-
             "mainClass": "TestingDataModel",
             "projectName": "EduSquad_72dba28a"
         },

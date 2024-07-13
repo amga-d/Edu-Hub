@@ -12,8 +12,7 @@ import model.Course;
 import model.User;
 import service.AccountService;
 import service.AccountServiceImpl;
-import service.CourseService;
-import service.CourseServiceImpl;
+
 import viewFxml.MainController;
 
 public class Work extends Application {
@@ -26,7 +25,7 @@ public class Work extends Application {
     public void start(Stage arg0) throws Exception {
 
        AccountService accountService = new AccountServiceImpl();
-        Account account = accountService.getAccountByEmail("aa");
+        Account account = accountService.getAccountById("33@33");
         FXMLLoader loader = new FXMLLoader (getClass().getResource("viewFXML/Main.fxml"));
             Parent mainPage = loader.load();
             MainController mainController = loader.getController();

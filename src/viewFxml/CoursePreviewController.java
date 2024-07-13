@@ -96,6 +96,9 @@ public class CoursePreviewController implements Initializable {
     }
 
     private void updateProgress() {
+        if (course.equals(courseService.getCourseByName(""))) {
+            
+        }
         Quiz1.setOnMouseClicked(e -> {
             if (!doneQ1.isVisible()) {
                 courseService.updateQuizCompletion(user,course.getQuizzes().get(0) );
